@@ -1,5 +1,4 @@
-# requirements (за инсталация):
-# pip install torch torchvision pillow
+
 
 from PIL import Image
 import torch

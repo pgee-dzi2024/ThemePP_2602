@@ -1,5 +1,4 @@
-# requirements (за инсталация):
-# pip install tensorflow pillow
+
 
 from PIL import Image
 import numpy as np
