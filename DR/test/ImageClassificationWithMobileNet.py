@@ -1,7 +1,6 @@
-import tensorflow as tf
+import numpy as np
 from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_input, decode_predictions
 from tensorflow.keras.preprocessing import image
-import numpy as np
 
 # 1. Зареждаме готовия модел MobileNetV2, обучен на ImageNet
 print("Зареждане на модела...")
@@ -25,4 +24,4 @@ def classify_image(img_path):
         print(f"{label}: {score*100:.2f}%")
 
 # Тук сложи пътя до някоя твоя снимка (напр. 'rose.jpg')
-# classify_image('път_към_твоята_снимка.jpg')
+classify_image('rose.jpg')

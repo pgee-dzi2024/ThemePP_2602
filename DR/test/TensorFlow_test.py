@@ -40,7 +40,7 @@ def predict_image_tf(image_path, top_k=5):
 
 # Пример за използване:
 if __name__ == "__main__":
-    img_path = "path/to/your/image.jpg"  # заменете с реален път
+    img_path = "rose.jpg"  # заменете с реален път
     out = predict_image_tf(img_path, top_k=5)
     print("Top-5 (RAW indices):")
     for r in out["raw"]:
