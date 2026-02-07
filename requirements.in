@@ -1,4 +1,4 @@
-Django==5.2.11
+Django==4.2.18
 mysqlclient==2.2.7
 pillow==12.1.0
 numpy
