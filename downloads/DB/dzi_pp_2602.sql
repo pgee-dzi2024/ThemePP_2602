@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Време на генериране:  6 фев 2026 в 00:14
+-- Време на генериране:  8 фев 2026 в 19:58
 -- Версия на сървъра: 10.4.32-MariaDB
 -- Версия на PHP: 8.2.12
 
@@ -110,6 +110,13 @@ CREATE TABLE `auth_user` (
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Схема на данните от таблица `auth_user`
+--
+
+INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
+(1, 'pbkdf2_sha256$600000$YvuhdYpJyUvMdzRdkW1TXo$6Tabgl39gUZKBZ4chG8dJTgMocYafb0+DCdqxQtrK/s=', '2026-02-08 18:24:56.894301', 1, 'user_26', '', '', '', 1, 1, '2026-02-08 18:24:11.558339');
 
 -- --------------------------------------------------------
 
@@ -232,6 +239,13 @@ CREATE TABLE `django_session` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Схема на данните от таблица `django_session`
+--
+
+INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
+('kv1eqj60ofqpv5obcx6dyv2nvas0729e', '.eJxVjMEOwiAQRP-FsyEUKFCP3v0GsuyuUjWQlPZk_Hdp0oOeZjJvZt4iwrbmuDVe4kziLAZx-s0S4JPLDugB5V4l1rIuc5J7RR60yWslfl2O7t9Bhpb72jnjR_AmIFsPriv5AJaMRT115wcVwNyAGVFbpQl1ClMwQdEIoK34fAHTszen:1vp9Sq:TomLx950znhgul49drYFATRuk7Px2oVkR-GAh09a6wQ', '2026-02-22 18:24:56.896326');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -334,7 +348,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
