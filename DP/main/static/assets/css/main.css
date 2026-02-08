@@ -398,20 +398,20 @@ input, select, textarea {
 				}
 
 		.row.gtr-25 {
-			margin-top: -12.5px;
-			margin-left: -12.5px;
+			margin-top: -13px;
+			margin-left: -13px;
 		}
 
 			.row.gtr-25 > * {
-				padding: 12.5px 0 0 12.5px;
+				padding: 13px 0 0 13px;
 			}
 
 			.row.gtr-25.gtr-uniform {
-				margin-top: -12.5px;
+				margin-top: -13px;
 			}
 
 				.row.gtr-25.gtr-uniform > * {
-					padding-top: 12.5px;
+					padding-top: 13px;
 				}
 
 		.row.gtr-50 {
@@ -886,20 +886,20 @@ input, select, textarea {
 						}
 
 				.row.gtr-25 {
-					margin-top: -7.5px;
-					margin-left: -7.5px;
+					margin-top: -8px;
+					margin-left: -8px;
 				}
 
 					.row.gtr-25 > * {
-						padding: 7.5px 0 0 7.5px;
+						padding: 8px 0 0 8px;
 					}
 
 					.row.gtr-25.gtr-uniform {
-						margin-top: -7.5px;
+						margin-top: -8px;
 					}
 
 						.row.gtr-25.gtr-uniform > * {
-							padding-top: 7.5px;
+							padding-top: 8px;
 						}
 
 				.row.gtr-50 {
@@ -1131,20 +1131,20 @@ input, select, textarea {
 						}
 
 				.row.gtr-25 {
-					margin-top: -7.5px;
-					margin-left: -7.5px;
+					margin-top: -8px;
+					margin-left: -8px;
 				}
 
 					.row.gtr-25 > * {
-						padding: 7.5px 0 0 7.5px;
+						padding: 8px 0 0 8px;
 					}
 
 					.row.gtr-25.gtr-uniform {
-						margin-top: -7.5px;
+						margin-top: -8px;
 					}
 
 						.row.gtr-25.gtr-uniform > * {
-							padding-top: 7.5px;
+							padding-top: 8px;
 						}
 
 				.row.gtr-50 {
@@ -1376,20 +1376,20 @@ input, select, textarea {
 						}
 
 				.row.gtr-25 {
-					margin-top: -7.5px;
-					margin-left: -7.5px;
+					margin-top: -8px;
+					margin-left: -8px;
 				}
 
 					.row.gtr-25 > * {
-						padding: 7.5px 0 0 7.5px;
+						padding: 8px 0 0 8px;
 					}
 
 					.row.gtr-25.gtr-uniform {
-						margin-top: -7.5px;
+						margin-top: -8px;
 					}
 
 						.row.gtr-25.gtr-uniform > * {
-							padding-top: 7.5px;
+							padding-top: 8px;
 						}
 
 				.row.gtr-50 {
@@ -2123,7 +2123,7 @@ input, select, textarea {
 			text-rendering: auto;
 			line-height: 1;
 			text-transform: none !important;
-			font-family: 'Font Awesome 5 Free';
+			font-family: 'Font Awesome 5 Free', sans-serif;
 			font-weight: 400;
 		}
 
@@ -2140,7 +2140,7 @@ input, select, textarea {
 		}
 
 		.icon.brands:before {
-			font-family: 'Font Awesome 5 Brands';
+			font-family: 'Font Awesome 5 Brands', sans-serif;
 		}
 
 		.icon.major {
@@ -3067,7 +3067,6 @@ input, select, textarea {
 				/*background-image: -webkit-linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");*/
 				/*background-image: -ms-linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");*/
 				background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
-				height: 44px;
 				line-height: 44px;
 				box-shadow: 0 4px 0 0 #37c0fb;
 			}
@@ -3106,7 +3105,7 @@ input, select, textarea {
 						text-rendering: auto;
 						line-height: 1;
 						text-transform: none !important;
-						font-family: 'Font Awesome 5 Free';
+						font-family: 'Font Awesome 5 Free', sans-serif;
 						font-weight: 900;
 					}
 
