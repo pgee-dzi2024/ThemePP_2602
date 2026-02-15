@@ -7,7 +7,7 @@
 {% load static %}
 <html>
 	<head>
-		<title>Arcana by HTML5 UP</title>
+		<title>{{ title__1 }}</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
         <!-- Добавете този ред -->
@@ -21,7 +21,13 @@
 				<div id="header">
 
 					<!-- Logo -->
-						<h1><a href="index.html" id="logo">Arcana <em>by HTML5 UP</em></a></h1>
+                    {% for item in title %}
+
+						<h1><a href="index.html" id="logo">
+                            {{ item }}
+                        </a></h1>
+                    {% endfor %}
+
 
 					<!-- Nav -->
 						<nav id="nav">
@@ -59,7 +65,13 @@
 				<section id="banner">
 					<header>
 						<h2>Arcana: <em>A responsive site template freebie by <a href="http://html5up.net">HTML5 UP</a></em></h2>
+                {% if button_name == '*'%}
 						<a href="#" class="button">Learn More</a>
+
+                    {% else %}
+						<a href="#" class="button">{{ button_name }}</a>
+
+                    {% endif %}
 					</header>
 				</section>
 
@@ -108,7 +120,8 @@
 						<div class="row">
 							<section class="col-6 col-12-narrower">
 								<div class="box post">
-                                    <a href="#" class="image left"><img src='{% static "images/pic01.jpg" %}'
+                                    <a href="#" class="image left">
+                                        <img src='{% static "images/pic01.jpg" %}'
                                                                         alt=""/></a>
                                     <div class="inner">
 										<h3>The First Thing</h3>
