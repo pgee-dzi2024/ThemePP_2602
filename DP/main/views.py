@@ -1,9 +1,8 @@
 from django.shortcuts import render
 
-
 def index(request):
     context = {
-        'title': ['Какво е това?', 'Защо е това?', 'Кога е това?'],
-        'button_name': '*'
+        'title': ['Какво е това?']
     }
-    return render(request, 'main/index.html', context)
+
+    return render(request, 'main/index.html')
