@@ -1,227 +1,141 @@
+{% load static %}
 <!DOCTYPE HTML>
 <!--
-	Arcana by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Radius by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-{% load static %}
 <html>
 	<head>
-		<title>{{ title }}</title>
+		<title>Radius by TEMPLATED</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <!-- Добавете този ред -->
-        <link rel="stylesheet" href='{% static "assets/css/fontawesome-all.min.css" %}'/>
-        <link rel="stylesheet" href='{% static "assets/css/main.css" %}'/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
     </head>
-	<body class="is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-				<div id="header">
+        <div id="app">
+            <!-- Header -->
+                <header id="header">
+                    <div class="inner">
+                        <div class="content">
+                            <h1>Какво е това</h1>
+                            <h2>A fully responsive masonry-style<br />
+                            portfolio template.</h2>
+                            <a class="button big alt" @click="showMode = 1"><span>Let's Go</span></a>
+                        </div>
+                        <a  class="button hidden" @click="showMode = 0"><span>Let's Go</span></a>
+                    </div>
+                </header>
 
-					<!-- Logo -->
-						<h1><a href="index.html" id="logo">Arcana <em>by HTML5 UP</em></a></h1>
+            <!-- Main -->
+                <div v-if="showMode == 0">
+                    <div class="inner">
+                        <div class="columns">
 
-					<!-- Nav -->
-						<nav id="nav">
-							<ul>
-								<li class="current"><a href="index.html">Начало</a></li>
+                            <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
+                                <div class="image fit">
+                                    <a href="detail1.html"><img src="{% static 'images/pic01.jpg' %}" alt=""/></a>
+                                </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic02.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic03.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic04.jpg' %}" alt=""/></a>
+                            </div>
 
-								<li><a href="left-sidebar.html">Left Sidebar</a></li>
-								<li><a href="right-sidebar.html">Камера</a></li>
-								<li><a href="two-sidebar.html">Two Sidebar</a></li>
-								<li><a href="no-sidebar.html">No Sidebar</a></li>
-							</ul>
-						</nav>
+                            <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
+                                <div class="image fit">
+                                    <a href="detail1.html"><img src="{% static 'images/pic06.jpg' %}" alt=""/></a>
+                                </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic05.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic08.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic07.jpg' %}" alt=""/></a>
+                            </div>
 
-				</div>
+                            <!-- Column 3 (horizontal, vertical, horizontal, vertical) -->
+                                <div class="image fit">
+                                    <a href="detail1.html"><img src="{% static 'images/pic09.jpg' %}" alt=""/></a>
+                                </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic12.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic11.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic10.jpg' %}" alt=""/></a>
+                            </div>
 
-			<!-- Banner -->
-				<section id="banner">
-					<header>
+                            <!-- Column 4 (vertical, horizontal, vertical, horizontal) -->
+                                <div class="image fit">
+                                    <a href="detail1.html"><img src="{% static 'images/pic13.jpg' %}" alt=""/></a>
+                                </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic14.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic15.jpg' %}" alt=""/></a>
+                            </div>
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/pic16.jpg' %}" alt=""/></a>
+                            </div>
 
-					</header>
-				</section>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="showMode == 1">
+                    <div class="inner">
+                        <div class="image fit">
+                            <img src="images/pic05.jpg" alt="" />
+                        </div>
+                        <div class="content">
+                            <header>
+                                <h2>Aliquam gravida felis vel velit accumsan</h2>
+                            </header>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec est ligula, ultrices id posuere vitae, rutrum in tellus. Suspendisse vitae aliquam metus. Cras blandit, tortor ut eleifend porttitor, urna lacus porttitor arcu, quis vestibulum metus dolor ut neque. Aenean et nisi venenatis, mollis enim eget, pharetra nunc. Sed blandit non mi nec ultrices. Vestibulum hendrerit tortor id gravida eleifend. Morbi vitae molestie odio. Etiam nec est vel sapien posuere vulputate eget eget mi. Quisque vulputate ligula velit, id accumsan dui fringilla nec. Morbi nisi mauris, placerat sit amet feugiat nec, vehicula ut ex.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec est ligula, ultrices id posuere vitae, rutrum in tellus. Suspendisse vitae aliquam metus. Cras blandit, tortor ut eleifend porttitor, urna lacus porttitor arcu, quis vestibulum metus dolor ut neque. Aenean et nisi venenatis, mollis enim eget, pharetra nunc. Sed blandit non mi nec ultrices. Vestibulum hendrerit tortor id gravida eleifend. Morbi vitae molestie odio. Etiam nec est vel sapien posuere vulputate eget eget mi. Quisque vulputate ligula velit, id accumsan dui fringilla nec. Morbi nisi mauris, placerat sit amet feugiat nec, vehicula ut ex.</p>
+                        </div>
+                    </div>
+                    <a href="detail1.html" class="nav previous"><span class="fa fa-chevron-left"></span></a>
+                    <a href="detail2.html" class="nav next"><span class="fa fa-chevron-right"></span></a>
+                </div>
 
-			<!-- Highlights -->
-				<section class="wrapper style1">
-					<div class="container">
-						<div class="row gtr-200">
-							<section class="col-4 col-12-narrower">
-								<div class="box highlight">
-									<i class="icon solid major fa-paper-plane"></i>
-									<h3>This Is Important</h3>
-									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-								</div>
-							</section>
-							<section class="col-4 col-12-narrower">
-								<div class="box highlight">
-									<i class="icon solid major fa-pencil-alt"></i>
-									<h3>Also Important</h3>
-									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-								</div>
-							</section>
-							<section class="col-4 col-12-narrower">
-								<div class="box highlight">
-									<i class="icon solid major fa-wrench"></i>
-									<h3>Probably Important</h3>
-									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-								</div>
-							</section>
-						</div>
-					</div>
-				</section>
-
-			<!-- Gigantic Heading -->
-				<section class="wrapper style2">
-					<div class="container">
-						<header class="major">
-							<h2>A gigantic heading you can use for whatever</h2>
-							<p>With a much smaller subtitle hanging out just below it</p>
-						</header>
-					</div>
-				</section>
-
-			<!-- Posts -->
-				<section class="wrapper style1">
-					<div class="container">
-						<div class="row">
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-                                    <a href="#" class="image left"><img src='{% static "images/pic01.jpg" %}'
-                                                                        alt=""/></a>
-                                    <div class="inner">
-										<h3>The First Thing</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-									</div>
-								</div>
-							</section>
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-                                    <a href="#" class="image left"><img src='{% static "images/pic02.jpg" %}'
-                                                                        alt=""/></a>
-                                    <div class="inner">
-										<h3>The Second Thing</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-									</div>
-								</div>
-							</section>
-						</div>
-						<div class="row">
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-                                    <a href="#" class="image left"><img src='{% static "images/pic03.jpg" %}'
-                                                                        alt=""/></a>
-                                    <div class="inner">
-										<h3>The Third Thing</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-									</div>
-								</div>
-							</section>
-							<section class="col-6 col-12-narrower">
-								<div class="box post">
-                                    <a href="#" class="image left"><img src='{% static "images/pic04.jpg" %}'
-                                                                        alt=""/></a>
-                                    <div class="inner">
-										<h3>The Fourth Thing</h3>
-										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
-									</div>
-								</div>
-							</section>
-						</div>
-					</div>
-				</section>
-
-			<!-- CTA -->
-				<section id="cta" class="wrapper style3">
-					<div class="container">
-						<header>
-							<h2>Are you ready to continue your quest?</h2>
-							<a href="#" class="button">Insert Coin</a>
-						</header>
-					</div>
-				</section>
-
-			<!-- Footer -->
-				<div id="footer">
-					<div class="container">
-						<div class="row">
-							<section class="col-3 col-6-narrower col-12-mobilep">
-								<h3>Links to Stuff</h3>
-								<ul class="links">
-									<li><a href="#">Mattis et quis rutrum</a></li>
-									<li><a href="#">Suspendisse amet varius</a></li>
-									<li><a href="#">Sed et dapibus quis</a></li>
-									<li><a href="#">Rutrum accumsan dolor</a></li>
-									<li><a href="#">Mattis rutrum accumsan</a></li>
-									<li><a href="#">Suspendisse varius nibh</a></li>
-									<li><a href="#">Sed et dapibus mattis</a></li>
-								</ul>
-							</section>
-							<section class="col-3 col-6-narrower col-12-mobilep">
-								<h3>More Links to Stuff</h3>
-								<ul class="links">
-									<li><a href="#">Duis neque nisi dapibus</a></li>
-									<li><a href="#">Sed et dapibus quis</a></li>
-									<li><a href="#">Rutrum accumsan sed</a></li>
-									<li><a href="#">Mattis et sed accumsan</a></li>
-									<li><a href="#">Duis neque nisi sed</a></li>
-									<li><a href="#">Sed et dapibus quis</a></li>
-									<li><a href="#">Rutrum amet varius</a></li>
-								</ul>
-							</section>
-							<section class="col-6 col-12-narrower">
-								<h3>Get In Touch</h3>
-								<form>
-									<div class="row gtr-50">
-										<div class="col-6 col-12-mobilep">
-											<input type="text" name="name" id="name" placeholder="Name" />
-										</div>
-										<div class="col-6 col-12-mobilep">
-											<input type="email" name="email" id="email" placeholder="Email" />
-										</div>
-										<div class="col-12">
-											<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
-										</div>
-										<div class="col-12">
-											<ul class="actions">
-												<li><input type="submit" class="button alt" value="Send Message" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</section>
-						</div>
-					</div>
-
-					<!-- Icons -->
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-							<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-							<li><a href="#" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
-						</ul>
-
-					<!-- Copyright -->
-						<div class="copyright">
-							<ul class="menu">
-								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-
-				</div>
-
-		</div>
+            <!-- Footer -->
+                <footer id="footer">
+                    <a href="#" class="info fa fa-info-circle"><span>About</span></a>
+                    <div class="inner">
+                        <div class="content">
+                            <h3>Vestibulum hendrerit tortor id gravida</h3>
+                            <p>In tempor porttitor nisl non elementum. Nulla ipsum ipsum, feugiat vitae vehicula vitae, imperdiet sed risus. Fusce sed dictum neque, id auctor felis. Praesent luctus sagittis viverra. Nulla erat nibh, fermentum quis enim ac, ultrices euismod augue. Proin ligula nibh, pretium at enim eget, tempor feugiat nulla.</p>
+                        </div>
+                        <div class="copyright">
+                            <h3>Follow me</h3>
+                            <ul class="icons">
+                                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                                <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+                            </ul>
+                            &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://unsplash.com/">Unsplash</a>.
+                        </div>
+                    </div>
+                </footer>
+        </div>
 
 		<!-- Scripts -->
-        <script src='{% static "assets/js/jquery.min.js" %}'></script>
-        <script src='{% static "assets/js/jquery.dropotron.min.js" %}'></script>
-        <script src='{% static "assets/js/browser.min.js" %}'></script>
-        <script src='{% static "assets/js/breakpoints.min.js" %}'></script>
-        <script src='{% static "assets/js/util.js" %}'></script>
-        <script src='{% static "assets/js/main.js" %}'></script>
-
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/skel.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="{% static 'assets/js/new.js' %}"></script>
     </body>
 </html>

@@ -359,7 +359,7 @@
 		button.alt,
 		.button.alt {
 			background: #FFF;
-			color: #3b452a;
+			color: #e74c3c;
 		}
 
 		input[type="submit"].fit,
@@ -1242,7 +1242,7 @@
 			display: -ms-flexbox;
 			-ms-flex-align: center;
 			-ms-flex-pack: center;
-			background: #97a13b;
+			background: #e74c3c;
 			border-radius: 100%;
 			width: 35em;
 			height: 35em;
