@@ -62,6 +62,7 @@
 			});
 
 		// Footer.
+
 			$footer.each( function() {
 
 				var t 		= jQuery(this),
