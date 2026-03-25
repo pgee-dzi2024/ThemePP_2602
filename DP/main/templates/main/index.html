@@ -187,39 +187,48 @@
                     <div class="inner" style="background-color: #c0cb5c" >
                         <div class="content" >
                             <h3> Меню </h3>
-                            <ul>
-                                <li>
-                                    <button class="icon-button" style="background-color: #a2af2f" onclick="openCamera()">
-                                        <img src="camera.jpg" class="icon-img">
-                                        <i>Камера</i>
-                                    </button>
+                                <button onclick="startCamera()">Отвори камера</button>
+                                    <video id="video" width="300" autoplay></video>
+                                <button onclick="takePhoto()">Снимай</button>
 
-                                    <input type="file" id="cameraInput"
-                                           accept="image/*"
-                                           capture="environment"
-                                           style="display:none"
-                                           onchange="handleImage(event)">
+                                <br><br>
 
-                                </li>
+                                <canvas id="canvas" width="300"></canvas>
+
+                                <script>
+                                function startCamera() {
+                                    navigator.mediaDevices.getUserMedia({ video: true })
+                                        .then(stream => {
+                                            document.getElementById("video").srcObject = stream;
+                                        })
+                                        .catch(err => {
+                                            alert("Няма достъп до камерата!");
+                                        });
+                                }
+
+                                function takePhoto() {
+                                    const video = document.getElementById("video");
+                                    const canvas = document.getElementById("canvas");
+                                    const context = canvas.getContext("2d");
+
+                                    context.drawImage(video, 0, 0, 300, 200);
+                                }
+                                </script>
 
                                 <br>
 
-                                <li>
-                                    <button class="icon-button" style="background-color: #a2af2f">
-                                        <img src="fav.jpg" class="icon-img">
-                                        <i>Любими</i>
-                                    </button>
-                                </li>
+
+                                <button class="icon-button" style="background-color: #a2af2f">
+                                    <img src="fav.jpg" class="icon-img">
+                                    <i>Любими</i>
+                                </button>
 
                                 <br>
 
-                                <li>
-                                    <button class="icon-button" style="background-color: #a2af2f">
-                                        <img src="fav.jpg" class="icon-img">
-                                        <i>История</i>
-                                    </button>
-                                </li>
-                            </ul>
+                                <button class="icon-button" style="background-color: #a2af2f">
+                                    <img src="fav.jpg" class="icon-img">
+                                    <i>История</i>
+                                </button>
                         </div>
                         <div class="copyright">
 
