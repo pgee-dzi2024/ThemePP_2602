@@ -187,12 +187,28 @@
                     <div class="inner" style="background-color: #c0cb5c" >
                         <div class="content" style="margin-top: 0; padding-top: 0;">
                             <h3 style="margin-top: 0; margin-bottom: 10px;" > Меню </h3>
+                                <div style="margin-top: 15px;">
+                                    <input type="file" accept="image/*" @change="onFileChange">
+                                    <button @click="uploadImage" style="display: block; margin-top: 8px;" :disabled="isUploading">
+                                        [[ isUploading ? 'Обработка...' : 'Качи и разпознай' ]]
+                                    </button>
+
+                                    <p v-if="errorMessage" style="margin-top: 10px; color: #8b0000;">
+                                        [[ errorMessage ]]
+                                    </p>
+
+                                    <div v-if="predictionResult" style="margin-top: 12px;">
+                                        <p><strong>Разпознато:</strong> [[ predictionResult.predicted_class_bg ]]</p>
+                                        <p><strong>English:</strong> [[ predictionResult.predicted_class_en ]]</p>
+                                        <p><strong>Достоверност:</strong> [[ predictionResult.confidence ]]%</p>
+                                    </div>
+                                </div>
 
                                 <button onclick="startCamera()" style="margin-top: -10px;">Отвори камера</button>
                                 <button onclick="takePhoto()" style="display: block; margin-top: 5px;"> Снимай </button>
 
                                 <video id="video" width="300" autoplay></video>
-
+<!--
                                 <button class="icon-button" style="background-color: #a2af2f; display: block; margin-top: -110px;" >
                                     <img src="fav.jpg" class="icon-img">
                                     <i>Любими</i>
@@ -202,7 +218,7 @@
                                     <img src="fav.jpg" class="icon-img">
                                     <i>История</i>
                                 </button>
-
+-->
 
                                 <canvas id="canvas" width="300"></canvas>
 
@@ -246,6 +262,7 @@
         <script src="{% static 'assets/js/util.js' %}"></script>
         <script src="{% static 'assets/js/main.js' %}"></script>
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="{% static 'assets/js/new.js' %}"></script>
 
 
