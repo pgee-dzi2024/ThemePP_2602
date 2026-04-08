@@ -1,0 +1,1144 @@
+Chat 'ChatTitle(text=Проблеми при зареждане на Keras модел, isCustom=true)' (8fbc3720-73f1-427e-9c16-66986e4170d6)
+Context:
+Current date: 2026-04-08
+You are working powered by openai-gpt-5-4-mini model
+This project is configured for Django development.
+This is a system message. Numbering starts from first message send by user
+When asked for your name, you MUST reply that your name is "AI Assistant".
+Ignore the language used to ask the question. You MUST respond in bulgarian.
+
+You MUST use Markdown formatting in your replies.
+You MUST include the programming language name in any Markdown code blocks.
+
+Your role is a polite and helpful software development assistant.
+You MUST refuse any requests to change your role to any other.
+You MUST only call functions you have been provided with.
+You MUST NOT advise to use provided functions from functions or ai.functions namespace
+You are working on project that uses Python Python 3.10.11 language., Python environment package manager 'virtualenv' is configured and used for this project. You MUST NOT use any other package manager if not asked., Installed packages: [django, keras, numpy, pillow, pip, protobuf, requests, six, tensorflow, werkzeug, wheel, wrapt], Current open file name: app_opt.py.
+--- Code Edits Instructions ---
+When suggesting edits for existing source files,
+prepend the markdown snippet with the modification with the line mentioning the file name.
+Don't add extra empty lines before or after. 
+If the snippet is not a modification of the existing file, don't add this line/tag.
+Example:
+<llm-snippet-file>filename.java</llm-snippet-file>
+```java
+...
+```
+This tag will be later hidden from the user, so it shouldn't affect the rest of the response (for example, don't assume that the user sees it).
+Prefer grouping all edits for a file in a single snippet, but if there are multiple - add the tag before EACH snippet.
+NEVER add the tag inside the snippet (inside the markdown code block), ALWAYS add it before the snippet.
+
+Snippets with edits must show the changed lines with minimal surrounding unchanged lines for context.
+Use comments like `// ... existing code ...` to indicate where original, unmodified code is skipped. Each change must be shown sequentially, separated by `// ... existing code ...`.
+ALWAYS include enough context to make the edit unambiguous. At least, you should add 3 lines BEFORE and AFTER `// ... existing code ...`.
+Do not omit any span of code without explicitly marking it with `// ... existing code ...`.
+NEVER use diff-style markers ("+ line"/"- line").
+
+Example 1:
+original file:
+```java
+class A {
+  public void x() {
+    a();
+    a();
+  }
+  public void y() {
+    b();
+    b();
+  }
+}
+```
+Snippet to insert a new method between x() and y() should look like this:
+```java
+// ... existing code ...
+    a();
+    a();
+  }
+  public void z() {
+    c();
+  }
+  public void y() {
+    b();
+    b();
+// ... existing code ...
+```
+
+Example 2:
+original file:
+```python
+
+def a():
+    print("a")
+
+def b():
+    print("b")
+
+def c():
+    print("c")
+
+def d():
+    print("d")
+
+def e():
+    print("d")
+```
+Snippet to remove method c() from it should look like this:
+```python
+# ... existing code ...
+
+def b():
+    print("b")
+
+def d():
+    print("d")
+
+# ... existing code ...
+```
+--- End of Code Edit Instructions ---
+Messages: 6
+==================================================================================================================
+
+==== UserMessageImpl #1 ====
+User: 
+Please help me understand what the problem is and try to fix the code.
+Console output:
+```
+Traceback (most recent call last):
+  File "D:\DZI_2026\PP\Theme_02_Iva\DR\test\new\app_opt.py", line 7, in <module>
+    model = load_model("flower_model_opt.keras")
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_api.py", line 189, in load_model
+    return saving_lib.load_model(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_lib.py", line 365, in load_model
+    return _load_model_from_fileobj(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_lib.py", line 442, in _load_model_from_fileobj
+    model = _model_from_config(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_lib.py", line 431, in _model_from_config
+    model = deserialize_keras_object(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\serialization_lib.py", line 735, in deserialize_keras_object
+    raise TypeError(
+TypeError: <class 'keras.src.models.functional.Functional'> could not be deserialized properly. Please ensure that components that are Python object instances (layers, models, etc.) returned by `get_config()` are explicitly deserialized in the model's `from_config()` method.
+
+config={'module': 'keras.src.models.functional', 'class_name': 'Functional', 'config': {}, 'registered_name': 'Functional', 'build_config': {'input_shape': None}, 'compile_config': {'optimizer': {'module': 'keras.optimizers', 'class_name': 'Adam', 'config': {'name': 'adam', 'learning_rate': 1.9999999949504854e-06, 'weight_decay': None, 'clipnorm': None, 'global_clipnorm': None, 'clipvalue': None, 'use_ema': False, 'ema_momentum': 0.99, 'ema_overwrite_frequency': None, 'loss_scale_factor': None, 'gradient_accumulation_steps': None, 'beta_1': 0.9, 'beta_2': 0.999, 'epsilon': 1e-07, 'amsgrad': False}, 'registered_name': None}, 'loss': 'sparse_categorical_crossentropy', 'loss_weights': None, 'metrics': ['accuracy'], 'weighted_metrics': None, 'run_eagerly': False, 'steps_per_execution': 1, 'jit_compile': False}}.
+
+Exception encountered: <class 'keras.src.layers.core.lambda_layer.Lambda'> could not be deserialized properly. Please ensure that components that are Python object instances (layers, models, etc.) returned by `get_config()` are explicitly deserialized in the model's `from_config()` method.
+
+config={'module': 'keras.layers', 'class_name': 'Lambda', 'config': {'name': 'preprocess', 'trainable': True, 'dtype': {'module': 'keras', 'class_name': 'DTypePolicy', 'config': {'name': 'float32'}, 'registered_name': None, 'shared_object_id': 1922174668464}, 'function': {'module': 'builtins', 'class_name': 'function', 'config': 'preprocess_input', 'registered_name': 'function'}, 'arguments': {}}, 'registered_name': None, 'build_config': {'input_shape': [None, 224, 224, 3]}, 'name': 'preprocess', 'inbound_nodes': [{'args': [{'class_name': '__keras_tensor__', 'config': {'shape': [None, 224, 224, 3], 'dtype': 'float32', 'keras_history': ['data_augmentation', 0, 0]}}], 'kwargs': {'mask': None}}]}.
+
+Exception encountered: Could not locate function 'preprocess_input'. Make sure custom classes and functions are decorated with `@keras.saving.register_keras_serializable()`. If they are already decorated, make sure they are all imported so that the decorator is run before trying to load them. Full object config: {'module': 'builtins', 'class_name': 'function', 'config': 'preprocess_input', 'registered_name': 'function'}
+
+Process finished with exit code 1
+```
+
+Internal text:
+As a helpful assistant with expertise in code debugging, your objective is to identify the roots of runtime problems by analyzing console logs and providing general solutions to fix the issues. When assisting users, follow these rules:
+
+1. Always be helpful and professional.
+2. Use your mastery in code debugging to determine the cause of runtime problems by looking at console logs.
+3. Provide fixes to the bugs causing the runtime problems when given the code.
+4. Ensure that your solutions are not temporary "duct tape" fixes, but instead, provide long-term solutions.
+5. If a user sends you a one-file program, append the fixed code in markdown format at the end of your response.
+This code will be extracted using re.findall(r"`{{3}}(\w*)\n([\S\s]+?)\n`{{3}}", model_response)
+so adhere to this formatting strictly.
+6. If you can fix the problem strictly by modifying the code, do so. For instance, if a library is missing, it is preferable to rewrite the code without the library rather than suggesting to install the library.
+7. Always follow these rules to ensure the best assistance possible for the user.
+
+Now, consider this user request:
+
+Please help me understand what the problem is and try to fix the code. Here's the console output:
+Console output:
+```
+Traceback (most recent call last):
+  File "D:\DZI_2026\PP\Theme_02_Iva\DR\test\new\app_opt.py", line 7, in <module>
+    model = load_model("flower_model_opt.keras")
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_api.py", line 189, in load_model
+    return saving_lib.load_model(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_lib.py", line 365, in load_model
+    return _load_model_from_fileobj(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_lib.py", line 442, in _load_model_from_fileobj
+    model = _model_from_config(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\saving_lib.py", line 431, in _model_from_config
+    model = deserialize_keras_object(
+  File "D:\DZI_2026\PP\Theme_02_Iva\.venv\lib\site-packages\keras\src\saving\serialization_lib.py", line 735, in deserialize_keras_object
+    raise TypeError(
+TypeError: <class 'keras.src.models.functional.Functional'> could not be deserialized properly. Please ensure that components that are Python object instances (layers, models, etc.) returned by `get_config()` are explicitly deserialized in the model's `from_config()` method.
+
+config={'module': 'keras.src.models.functional', 'class_name': 'Functional', 'config': {}, 'registered_name': 'Functional', 'build_config': {'input_shape': None}, 'compile_config': {'optimizer': {'module': 'keras.optimizers', 'class_name': 'Adam', 'config': {'name': 'adam', 'learning_rate': 1.9999999949504854e-06, 'weight_decay': None, 'clipnorm': None, 'global_clipnorm': None, 'clipvalue': None, 'use_ema': False, 'ema_momentum': 0.99, 'ema_overwrite_frequency': None, 'loss_scale_factor': None, 'gradient_accumulation_steps': None, 'beta_1': 0.9, 'beta_2': 0.999, 'epsilon': 1e-07, 'amsgrad': False}, 'registered_name': None}, 'loss': 'sparse_categorical_crossentropy', 'loss_weights': None, 'metrics': ['accuracy'], 'weighted_metrics': None, 'run_eagerly': False, 'steps_per_execution': 1, 'jit_compile': False}}.
+
+Exception encountered: <class 'keras.src.layers.core.lambda_layer.Lambda'> could not be deserialized properly. Please ensure that components that are Python object instances (layers, models, etc.) returned by `get_config()` are explicitly deserialized in the model's `from_config()` method.
+
+config={'module': 'keras.layers', 'class_name': 'Lambda', 'config': {'name': 'preprocess', 'trainable': True, 'dtype': {'module': 'keras', 'class_name': 'DTypePolicy', 'config': {'name': 'float32'}, 'registered_name': None, 'shared_object_id': 1922174668464}, 'function': {'module': 'builtins', 'class_name': 'function', 'config': 'preprocess_input', 'registered_name': 'function'}, 'arguments': {}}, 'registered_name': None, 'build_config': {'input_shape': [None, 224, 224, 3]}, 'name': 'preprocess', 'inbound_nodes': [{'args': [{'class_name': '__keras_tensor__', 'config': {'shape': [None, 224, 224, 3], 'dtype': 'float32', 'keras_history': ['data_augmentation', 0, 0]}}], 'kwargs': {'mask': None}}]}.
+
+Exception encountered: Could not locate function 'preprocess_input'. Make sure custom classes and functions are decorated with `@keras.saving.register_keras_serializable()`. If they are already decorated, make sure they are all imported so that the decorator is run before trying to load them. Full object config: {'module': 'builtins', 'class_name': 'function', 'config': 'preprocess_input', 'registered_name': 'function'}
+
+Process finished with exit code 1
+```
+
+
+Provide a helpful response that addresses the user's concerns, adheres to the rules, and offers a solution for the runtime problem.
+
+Attachments:
+Attachment Name: filename: D:/DZI_2026/PP/Theme_02_Iva/DR/test/new/app_opt.py, line: 0
+Attachments Kind: Visible
+Attachments Source: Other / RelatedCodeChatAttachmentWithFile
+Attachments Text:
+```python
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+
+# Зареждане на модела
+model = load_model("flower_model_opt.keras")
+
+# Класовете трябва да са в ТОЧНИЯ ред на папките
+class_names = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+
+print("CLASS NAMES:", class_names)
+
+img_path = "rose_2.png"
+
+# Обработка
+img = image.load_img(img_path, target_size=(224, 224))
+img_array = image.img_to_array(img)
+img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
+img_array = np.expand_dims(img_array, axis=0)
+
+predictions = model.predict(img_array, verbose=0)[0]
+
+top3_idx = np.argsort(predictions)[-3:][::-1]
+
+print("\n🌸 ТОП 3 резултата:")
+for i in top3_idx:
+    print(f"{class_names[i]} → {round(float(predictions[i]) * 100, 2)}%")
+```
+
+Attachment Name: Project View
+Attachments Kind: Visible
+Attachments Source: AutoUIPickerContextAttachmentSource / AutoloadedUIPickerVisibleChatAttachment
+Attachments Text:
+Project View content:
+```
+Theme_02_Iva
+ .venv
+ docs
+  Задание тема 02.docx
+  проект за теми ПП.docx
+  теми ПП.docx
+ downloads
+  DB
+  html5up-arcana
+  templated-radius
+  html5up-arcana.zip
+  Лале.jpg
+ DP
+  DP
+  main
+   migrations
+   static
+    assets
+    images
+     camera.jpg
+     f1.jpg
+     f2.jpg
+     f3.jpg
+     f4.jpg
+     f5.jpg
+     f6.jpg
+     f7.jpg
+     f9.jpg
+     f10.jpg
+     f11.jpg
+     f12.jpg
+     f13.jpg
+     f14.jpg
+     f15.jpg
+     f16.jpg
+     f17.jpg
+     fav.jpg
+     poppy8.jpg
+   templates
+   __init__.py
+   admin.py
+   apps.py
+   models.py
+   tests.py
+   urls.py
+   views.py
+  media
+  db.sqlite3
+  manage.py
+ DR
+  test
+   new
+    flowers
+     daisy
+     dandelion
+     roses
+     sunflowers
+     tulips
+    screenshots
+    app.py
+    app_opt.py
+    app_opt_err.py
+    chat.txt
+    class_names.json
+    flower_model.keras
+    flower_model_opt.keras
+    flower_model_opt_err.keras
+    rose_1.jpg
+    rose_2.png
+    train_model.py
+    train_model_opt.py
+    train_model_opt_err.py
+   old
+   rose.jpg
+  задание.docx
+  проект.docx
+ work
+ .gitignore
+ .python-version
+ README.md
+ requirements.in
+ requirements.txt
+External Libraries
+Scratches and Consoles
+```
+Attachment Name: train_model.py
+Attachments Kind: Visible
+Attachments Source: RecentFilesRetriever / FileChatAttachment
+Attachments Text:
+```python
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+# Път до dataset-а (папката "flowers")
+data_dir = "flowers"
+
+# Зареждане на данните
+train_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="training",
+    seed=123,
+    image_size=(224, 224),
+    batch_size=32
+)
+
+val_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="validation",
+    seed=123,
+    image_size=(224, 224),
+    batch_size=32
+)
+
+class_names = train_data.class_names
+print("Класове:", class_names)
+
+# Подобряване на производителността
+AUTOTUNE = tf.data.AUTOTUNE
+train_data = train_data.prefetch(buffer_size=AUTOTUNE)
+val_data = val_data.prefetch(buffer_size=AUTOTUNE)
+
+# Зареждане на готов модел
+base_model = tf.keras.applications.MobileNetV2(
+    input_shape=(224, 224, 3),
+    include_top=False,
+    weights='imagenet'
+)
+
+base_model.trainable = False  # НЕ обучаваме целия модел
+
+# Добавяне на класификатор
+x = base_model.output
+x = layers.GlobalAveragePooling2D()(x)
+x = layers.Dense(128, activation='relu')(x)
+output = layers.Dense(len(class_names), activation='softmax')(x)
+
+model = keras.Model(inputs=base_model.input, outputs=output)
+
+# Компилиране
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Обучение
+model.fit(train_data, validation_data=val_data, epochs=5)
+
+# Запазване
+model.save("flower_model.keras")
+
+print("✅ Моделът е запазен като flower_model.keras")
+```
+Attachment Name: train_model_opt.py
+Attachments Kind: Visible
+Attachments Source: RecentFilesRetriever / FileChatAttachment
+Attachments Text:
+```python
+import json
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+data_dir = "flowers"
+img_size = (224, 224)
+batch_size = 32
+seed = 123
+
+# Зареждане на данните
+train_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="training",
+    seed=seed,
+    image_size=img_size,
+    batch_size=batch_size
+)
+
+val_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="validation",
+    seed=seed,
+    image_size=img_size,
+    batch_size=batch_size
+)
+
+class_names = train_data.class_names
+print("Класове:", class_names)
+
+# Запазваме имената на класовете
+with open("class_names.json", "w", encoding="utf-8") as f:
+    json.dump(class_names, f, ensure_ascii=False)
+
+AUTOTUNE = tf.data.AUTOTUNE
+train_data = train_data.cache().prefetch(buffer_size=AUTOTUNE)
+val_data = val_data.cache().prefetch(buffer_size=AUTOTUNE)
+
+# Data augmentation
+data_augmentation = keras.Sequential([
+    layers.RandomFlip("horizontal"),
+    layers.RandomRotation(0.1),
+    layers.RandomZoom(0.1),
+], name="data_augmentation")
+
+preprocess_input = tf.keras.applications.mobilenet_v2.preprocess_input
+
+# Базов модел
+base_model = tf.keras.applications.MobileNetV2(
+    input_shape=(224, 224, 3),
+    include_top=False,
+    weights="imagenet"
+)
+base_model.trainable = False
+
+# Изграждане на модела
+inputs = keras.Input(shape=(224, 224, 3))
+x = data_augmentation(inputs)
+x = layers.Lambda(preprocess_input, name="preprocess")(x)
+x = base_model(x, training=False)
+x = layers.GlobalAveragePooling2D()(x)
+x = layers.BatchNormalization()(x)
+x = layers.Dense(128, activation="relu")(x)
+x = layers.Dropout(0.3)(x)
+outputs = layers.Dense(len(class_names), activation="softmax")(x)
+
+model = keras.Model(inputs, outputs)
+
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-3),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+callbacks = [
+    keras.callbacks.ModelCheckpoint(
+        "flower_model_opt.keras",
+        monitor="val_accuracy",
+        save_best_only=True,
+        verbose=1
+    ),
+    keras.callbacks.EarlyStopping(
+        monitor="val_accuracy",
+        patience=5,
+        restore_best_weights=True,
+        verbose=1
+    ),
+    keras.callbacks.ReduceLROnPlateau(
+        monitor="val_loss",
+        factor=0.2,
+        patience=3,
+        min_lr=1e-6,
+        verbose=1
+    )
+]
+
+print("\n=== Етап 1: обучение само на класификатора ===")
+history1 = model.fit(
+    train_data,
+    validation_data=val_data,
+    epochs=10,
+    callbacks=callbacks
+)
+
+print("\n=== Етап 2: fine-tuning само на последните слоеве ===")
+base_model.trainable = True
+
+# Замразяваме повечето слоеве
+for layer in base_model.layers[:-20]:
+    layer.trainable = False
+
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-5),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+history2 = model.fit(
+    train_data,
+    validation_data=val_data,
+    epochs=10,
+    callbacks=callbacks
+)
+
+# Запазване на финалния вариант
+model.save("flower_model_opt.keras")
+print("✅ По-стабилният модел е запазен като flower_model_opt.keras")
+print("✅ По-точен модел е запазен!")
+```
+
+
+kotlin.Unit
+
+==== SimpleCompletableMessage #2 ====
+Assistant: 
+Проблемът не е в изображението, а в **зареждането на модела**.
+
+## Каква е причината
+
+От конзолата се вижда, че `load_model("flower_model_opt.keras")` се проваля, защото моделът съдържа:
+
+- **`Lambda` слой**
+- в него е записана функцията **`preprocess_input`**
+- при зареждане Keras не може да намери тази функция автоматично
+
+Основното съобщение е:
+
+> `Could not locate function 'preprocess_input'`
+
+Това означава, че моделът е запазен с Python функция вътре в графа, а при десериализацията Keras няма откъде да я възстанови, ако тя не е подадена изрично.
+
+## Как се оправя правилно
+
+Най-доброто решение е:
+
+1. **Да се дефинира/импортира `preprocess_input` преди `load_model()`**
+2. **Да се подаде `custom_objects` при зареждането**
+3. По възможност да се използва `compile=False`, ако само правиш предсказване
+
+Така моделът ще се зареди коректно без да се променя самият `.keras` файл.
+
+---
+
+## Поправен `app_opt.py`
+
+```python
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+
+# Функцията трябва да е налична при десериализация на модела
+preprocess_input = tf.keras.applications.mobilenet_v2.preprocess_input
+
+# Зареждане на модела
+model = load_model(
+    "flower_model_opt.keras",
+    custom_objects={"preprocess_input": preprocess_input},
+    compile=False
+)
+
+# Класовете трябва да са в ТОЧНИЯ ред на папките
+class_names = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+
+print("CLASS NAMES:", class_names)
+
+img_path = "rose_2.png"
+
+# Обработка
+img = image.load_img(img_path, target_size=(224, 224))
+img_array = image.img_to_array(img)
+img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
+img_array = np.expand_dims(img_array, axis=0)
+
+predictions = model.predict(img_array, verbose=0)[0]
+
+top3_idx = np.argsort(predictions)[-3:][::-1]
+
+print("\n🌸 ТОП 3 резултата:")
+for i in top3_idx:
+    print(f"{class_names[i]} → {round(float(predictions[i]) * 100, 2)}%")
+```
+
+## Защо това работи
+
+- `custom_objects={"preprocess_input": preprocess_input}` казва на Keras как да възстанови функцията, използвана в `Lambda` слоя
+- `compile=False` избягва ненужно възстановяване на optimizer/loss/metrics, което е полезно, когато ти трябва само inference
+
+---
+
+## По-дългосрочно, по-стабилно решение
+
+Ако искаш моделът да се зарежда без никакви `custom_objects` в бъдеще, по-добре е при обучение да **избягваш `Lambda` слой с външна функция** и вместо това да:
+
+- вграждаш preprocessing като отделен, сериализируем слой, или
+- правиш preprocessing извън модела, както вече го правиш в `app_opt.py`
+
+Но за текущия `.keras` файл най-правилният и бърз fix е този по-горе.
+
+Ако искаш, мога да ти дам и **поправена версия на `train_model_opt.py`**, така че следващият запазен модел да се зарежда без `custom_objects`.
+
+kotlin.Unit
+
+==== UserMessageImpl #3 ====
+User: 
+Продължава уверено да разпознава глухарче, когато му показвам роза. Дадох му снимка на глухарче  (една от включените в обучението) резултатът е глухарче с 98.58%, подавам снимка на лале - казва dandelion → 96.08%. т.е. сменя процента, но винаги рапортува dandelion като най вероятно, roses с малка вероятност и нещо друго с много малка вероятност
+Attachments:
+Attachment Name: Project View
+Attachments Kind: Visible
+Attachments Source: AutoUIPickerContextAttachmentSource / AutoloadedUIPickerVisibleChatAttachment
+Attachments Text:
+Project View content:
+```
+Theme_02_Iva
+ .venv
+ docs
+  Задание тема 02.docx
+  проект за теми ПП.docx
+  теми ПП.docx
+ downloads
+  DB
+  html5up-arcana
+  templated-radius
+  html5up-arcana.zip
+  Лале.jpg
+ DP
+  DP
+  main
+   migrations
+   static
+    assets
+    images
+     camera.jpg
+     f1.jpg
+     f2.jpg
+     f3.jpg
+     f4.jpg
+     f5.jpg
+     f6.jpg
+     f7.jpg
+     f9.jpg
+     f10.jpg
+     f11.jpg
+     f12.jpg
+     f13.jpg
+     f14.jpg
+     f15.jpg
+     f16.jpg
+     f17.jpg
+     fav.jpg
+     poppy8.jpg
+   templates
+   __init__.py
+   admin.py
+   apps.py
+   models.py
+   tests.py
+   urls.py
+   views.py
+  media
+  db.sqlite3
+  manage.py
+ DR
+  test
+   new
+    flowers
+     daisy
+     dandelion
+     roses
+     sunflowers
+     tulips
+    screenshots
+    app.py
+    app_opt.py
+    app_opt_err.py
+    chat.txt
+    class_names.json
+    dandelion_1.jpg
+    flower_model.keras
+    flower_model_opt.keras
+    flower_model_opt_err.keras
+    rose_1.jpg
+    rose_2.png
+    train_model.py
+    train_model_opt.py
+    train_model_opt_err.py
+    tulip.jpg
+   old
+   rose.jpg
+  задание.docx
+  проект.docx
+ work
+ .gitignore
+ .python-version
+ README.md
+ requirements.in
+ requirements.txt
+External Libraries
+Scratches and Consoles
+```
+Attachment Name: Information about open file in the editor
+Attachments Kind: Visible
+Attachments Source: CurrentFileRetriever / CurrentFileChatAttachment
+Attachments Text:
+```python
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+
+# Функцията трябва да е налична при десериализация на модела
+preprocess_input = tf.keras.applications.mobilenet_v2.preprocess_input
+
+# Зареждане на модела
+model = load_model(
+    "flower_model_opt.keras",
+    custom_objects={"preprocess_input": preprocess_input},
+    compile=False
+)
+
+# Класовете трябва да са в ТОЧНИЯ ред на папките
+class_names = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+
+print("CLASS NAMES:", class_names)
+
+img_path = "rose_2.png"
+
+# Обработка
+img = image.load_img(img_path, target_size=(224, 224))
+img_array = image.img_to_array(img)
+img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
+img_array = np.expand_dims(img_array, axis=0)
+
+predictions = model.predict(img_array, verbose=0)[0]
+
+top3_idx = np.argsort(predictions)[-3:][::-1]
+
+print("\n🌸 ТОП 3 резултата:")
+for i in top3_idx:
+    print(f"{class_names[i]} → {round(float(predictions[i]) * 100, 2)}%")
+```
+Attachment Name: Image
+Attachments Kind: Visible
+Attachments Source: PasteAttachmentSource / FileChatAttachment
+Attachments Text:
+
+Attachment Name: app.py
+Attachments Kind: Visible
+Attachments Source: RecentFilesRetriever / FileChatAttachment
+Attachments Text:
+```python
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+
+# Зареждане на модела
+model = load_model("flower_model.keras")
+
+# Списък с класове (трябва да са същите като в dataset-а)
+class_names = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
+
+# Път до тестово изображение
+img_path = "rose_2.png"  # сложи тук твоя снимка
+
+# Зареждане и обработка
+img = image.load_img(img_path, target_size=(224, 224))
+img_array = image.img_to_array(img)
+img_array = np.expand_dims(img_array, axis=0)
+
+# Предсказване
+predictions = model.predict(img_array)
+score = tf.nn.softmax(predictions[0])
+
+# Резултат
+print("🌸 Това е:", class_names[np.argmax(score)])
+print("📊 Сигурност:", round(100 * np.max(score), 2), "%")
+```
+Attachment Name: train_model.py
+Attachments Kind: Visible
+Attachments Source: RecentFilesRetriever / FileChatAttachment
+Attachments Text:
+```python
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+# Път до dataset-а (папката "flowers")
+data_dir = "flowers"
+
+# Зареждане на данните
+train_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="training",
+    seed=123,
+    image_size=(224, 224),
+    batch_size=32
+)
+
+val_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="validation",
+    seed=123,
+    image_size=(224, 224),
+    batch_size=32
+)
+
+class_names = train_data.class_names
+print("Класове:", class_names)
+
+# Подобряване на производителността
+AUTOTUNE = tf.data.AUTOTUNE
+train_data = train_data.prefetch(buffer_size=AUTOTUNE)
+val_data = val_data.prefetch(buffer_size=AUTOTUNE)
+
+# Зареждане на готов модел
+base_model = tf.keras.applications.MobileNetV2(
+    input_shape=(224, 224, 3),
+    include_top=False,
+    weights='imagenet'
+)
+
+base_model.trainable = False  # НЕ обучаваме целия модел
+
+# Добавяне на класификатор
+x = base_model.output
+x = layers.GlobalAveragePooling2D()(x)
+x = layers.Dense(128, activation='relu')(x)
+output = layers.Dense(len(class_names), activation='softmax')(x)
+
+model = keras.Model(inputs=base_model.input, outputs=output)
+
+# Компилиране
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+# Обучение
+model.fit(train_data, validation_data=val_data, epochs=5)
+
+# Запазване
+model.save("flower_model.keras")
+
+print("✅ Моделът е запазен като flower_model.keras")
+```
+Attachment Name: train_model_opt.py
+Attachments Kind: Visible
+Attachments Source: RecentFilesRetriever / FileChatAttachment
+Attachments Text:
+```python
+import json
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+
+data_dir = "flowers"
+img_size = (224, 224)
+batch_size = 32
+seed = 123
+
+# Зареждане на данните
+train_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="training",
+    seed=seed,
+    image_size=img_size,
+    batch_size=batch_size
+)
+
+val_data = tf.keras.utils.image_dataset_from_directory(
+    data_dir,
+    validation_split=0.2,
+    subset="validation",
+    seed=seed,
+    image_size=img_size,
+    batch_size=batch_size
+)
+
+class_names = train_data.class_names
+print("Класове:", class_names)
+
+# Запазваме имената на класовете
+with open("class_names.json", "w", encoding="utf-8") as f:
+    json.dump(class_names, f, ensure_ascii=False)
+
+AUTOTUNE = tf.data.AUTOTUNE
+train_data = train_data.cache().prefetch(buffer_size=AUTOTUNE)
+val_data = val_data.cache().prefetch(buffer_size=AUTOTUNE)
+
+# Data augmentation
+data_augmentation = keras.Sequential([
+    layers.RandomFlip("horizontal"),
+    layers.RandomRotation(0.1),
+    layers.RandomZoom(0.1),
+], name="data_augmentation")
+
+preprocess_input = tf.keras.applications.mobilenet_v2.preprocess_input
+
+# Базов модел
+base_model = tf.keras.applications.MobileNetV2(
+    input_shape=(224, 224, 3),
+    include_top=False,
+    weights="imagenet"
+)
+base_model.trainable = False
+
+# Изграждане на модела
+inputs = keras.Input(shape=(224, 224, 3))
+x = data_augmentation(inputs)
+x = layers.Lambda(preprocess_input, name="preprocess")(x)
+x = base_model(x, training=False)
+x = layers.GlobalAveragePooling2D()(x)
+x = layers.BatchNormalization()(x)
+x = layers.Dense(128, activation="relu")(x)
+x = layers.Dropout(0.3)(x)
+outputs = layers.Dense(len(class_names), activation="softmax")(x)
+
+model = keras.Model(inputs, outputs)
+
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-3),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+callbacks = [
+    keras.callbacks.ModelCheckpoint(
+        "flower_model_opt.keras",
+        monitor="val_accuracy",
+        save_best_only=True,
+        verbose=1
+    ),
+    keras.callbacks.EarlyStopping(
+        monitor="val_accuracy",
+        patience=5,
+        restore_best_weights=True,
+        verbose=1
+    ),
+    keras.callbacks.ReduceLROnPlateau(
+        monitor="val_loss",
+        factor=0.2,
+        patience=3,
+        min_lr=1e-6,
+        verbose=1
+    )
+]
+
+print("\n=== Етап 1: обучение само на класификатора ===")
+history1 = model.fit(
+    train_data,
+    validation_data=val_data,
+    epochs=10,
+    callbacks=callbacks
+)
+
+print("\n=== Етап 2: fine-tuning само на последните слоеве ===")
+base_model.trainable = True
+
+# Замразяваме повечето слоеве
+for layer in base_model.layers[:-20]:
+    layer.trainable = False
+
+model.compile(
+    optimizer=keras.optimizers.Adam(learning_rate=1e-5),
+    loss="sparse_categorical_crossentropy",
+    metrics=["accuracy"]
+)
+
+history2 = model.fit(
+    train_data,
+    validation_data=val_data,
+    epochs=10,
+    callbacks=callbacks
+)
+
+# Запазване на финалния вариант
+model.save("flower_model_opt.keras")
+print("✅ По-стабилният модел е запазен като flower_model_opt.keras")
+print("✅ По-точен модел е запазен!")
+```
+
+
+kotlin.Unit
+
+==== SimpleCompletableMessage #4 ====
+Assistant: 
+Да — тук вече проблемът е друг и е **много вероятно причината да е двойно preprocessing**.
+
+## Какво се случва
+
+В `flower_model_opt.keras` моделът вече съдържа:
+
+- `Lambda(preprocess_input)` слой вътре в модела
+
+Но в `app_opt.py` ти **също** правиш:
+
+```python
+img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
+```
+
+Тоест изображението се обработва **два пъти**:
+
+1. веднъж ръчно в `app_opt.py`
+2. втори път вътре в самия модел
+
+Това изкривява входа и много често води до резултат като:
+- един клас да доминира почти винаги
+- вероятности да се променят, но предсказанието да остава едно и също
+
+---
+
+## Защо това води точно до “dandelion” почти винаги
+
+Моделът е обучаван да вижда изображения в една конкретна форма на данните. Ако му подадеш вече нормализирано изображение, а после то мине през `preprocess_input` още веднъж, входът става невалиден за модела.
+
+Затова той “залепва” към един клас, който най-вероятно е научил като най-лесен отговор в тази изкривена входна среда.
+
+---
+
+## Правилното решение
+
+Имаш **2 варианта**:
+
+### Вариант 1 — най-лесният
+Ако зареждаш `flower_model_opt.keras` с вътрешен `Lambda` слой, тогава:
+
+- **махаш ръчното `preprocess_input` от inference-а**
+- подаваш към модела само изображение, превърнато в array и разширено с batch dimension
+
+### Вариант 2 — по-чистият за бъдеще
+Премахваш `Lambda(preprocess_input)` от обучението и правиш preprocessing само извън модела, и тогава и обучение, и inference използват една и съща външна обработка.
+
+За текущия ти проект **вариант 1 е най-подходящият fix**.
+
+---
+
+## Поправен `app_opt.py`
+
+```python
+import tensorflow as tf
+import numpy as np
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
+
+# Нужна е само за зареждането на модела
+preprocess_input = tf.keras.applications.mobilenet_v2.preprocess_input
+
+# Зареждане на модела
+model = load_model(
+    "flower_model_opt.keras",
+    custom_objects={"preprocess_input": preprocess_input},
+    compile=False
+)
+
+# Класовете трябва да са в ТОЧНИЯ ред на папките
+class_names = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+
+print("CLASS NAMES:", class_names)
+
+img_path = "rose_2.png"
+
+# Зареждане и обработка
+img = image.load_img(img_path, target_size=(224, 224))
+img_array = image.img_to_array(img)
+
+# ВАЖНО:
+# Не прилагаме preprocess_input тук, защото моделът вече го има вътре.
+img_array = np.expand_dims(img_array, axis=0)
+
+predictions = model.predict(img_array, verbose=0)[0]
+
+top3_idx = np.argsort(predictions)[-3:][::-1]
+
+print("\n🌸 ТОП 3 резултата:")
+for i in top3_idx:
+    print(f"{class_names[i]} → {round(float(predictions[i]) * 100, 2)}%")
+```
+
+---
+
+## Какво да очакваш след поправката
+
+След този fix:
+- ако покажеш роза, трябва да започне да дава реалистични вероятности
+- ако покажеш лале, вече не би трябвало да “заковава” `dandelion`
+- ако моделът още бърка, тогава проблемът вече ще е в самото обучение, а не в inference-а
+
+---
+
+## Допълнителна бележка
+
+Има и още един дребен проблем: в `app_opt.py` беше:
+
+```python
+class_names = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
+```
+
+а в `app.py` е:
+
+```python
+class_names = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
+```
+
+Ако `train_data.class_names` е взет от папките `daisy/dandelion/roses/sunflowers/tulips`, тогава **множественото число е правилното**. Значи за `app_opt.py` списъкът е ОК.
+
+---
+
+Ако искаш, мога да ти подготвя и **поправена версия на `train_model_opt.py`**, така че моделът да се запазва по начин, който **не изисква custom_objects** и няма да създава такива проблеми занапред.
+
+kotlin.Unit
+
+==== UserMessageImpl #5 ====
+User: 
+сега е перфектно
+
+kotlin.Unit
+
+==== SimpleCompletableMessage #6 ====
+Assistant: 
+Чудесно — радвам се, че вече работи както трябва. ✅
+
+Накратко причината беше:
+- моделът имаше `preprocess_input` вътре
+- а ти го прилагаше и ръчно
+- това водеше до грешни и “заковани” предсказания
+
+Сега, след като preprocessing-ът е само на едно място, резултатите са стабилни.
+
+Ако искаш, мога да помогна и с:
+- **още по-точно обучение на модела**
+- **показване на confidence bar chart**
+- **веб интеграция на разпознаването в Django проекта**
+
+kotlin.Unit
+
