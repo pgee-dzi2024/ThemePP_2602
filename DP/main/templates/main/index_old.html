@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Radius by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Radius by TEMPLATED</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    </head>
+
+    <body>
+        <div id="app">
+            <!-- Header -->
+            <header id="header">
+                <div class="inner" style="background-color: #ed96be">
+                    <div class="content">
+                        <h1>Какво е това?</h1>
+                        <h2> <i> Приложение за разпознаване на растения </i> <br /> </h2>
+                        <a class="button big alt" @click="showMode = 1"><span><i>Започни</i></span></a>
+                    </div>
+                    <a  class="button hidden" @click="showMode = 0"><span>Let's Go</span></a>
+                </div>
+            </header>
+
+            <!-- Splash -->
+            <div v-if="showMode == 0">
+                <div class="inner">
+                    <div class="columns">
+
+                        <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f1.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f2.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f3.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f4.jpg' %}" alt=""/></a>
+                        </div>
+
+                        <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/f6.jpg' %}" alt=""/></a>
+                            </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f5.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/poppy8.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f7.jpg' %}" alt=""/></a>
+                        </div>
+
+                        <!-- Column 3 (horizontal, vertical, horizontal, vertical) -->
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/f9.jpg' %}" alt=""/></a>
+                            </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f12.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f11.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f10.jpg' %}" alt=""/></a>
+                        </div>
+
+                        <!-- Column 4 (vertical, horizontal, vertical, horizontal) -->
+                            <div class="image fit">
+                                <a href="detail1.html"><img src="{% static 'images/f13.jpg' %}" alt=""/></a>
+                            </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f14.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f15.jpg' %}" alt=""/></a>
+                        </div>
+                        <div class="image fit">
+                            <a href="detail1.html"><img src="{% static 'images/f16.jpg' %}" alt=""/></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Main -->
+            <div v-if="showMode == 1">
+                <div class="inner">
+                    <div class="content">
+                        <div class="content" style="margin-top: 0; padding-top: 0;">
+    <h3 style="margin-top: 0; margin-bottom: 10px;" > Меню </h3>
+    <div style="margin-top: 15px;">
+        <input type="file" accept="image/*" @change="onFileChange">
+        <button @click="uploadImage" style="display: block; margin-top: 8px;" :disabled="isUploading">
+            [[ isUploading ? 'Обработка...' : 'Качи и разпознай' ]]
+        </button>
+
+        <p v-if="errorMessage" style="margin-top: 10px; color: #8b0000;">
+            [[ errorMessage ]]
+        </p>
+
+        <div v-if="predictionResult" style="margin-top: 12px;">
+            <p><strong>Разпознато:</strong> [[ predictionResult.predicted_class_bg ]]</p>
+            <p><strong>English:</strong> [[ predictionResult.predicted_class_en ]]</p>
+            <p><strong>Достоверност:</strong> [[ predictionResult.confidence ]]%</p>
+        </div>
+    </div>
+    <button onclick="startCamera()" style="margin-top: -10px;">Отвори камера</button>
+    <button onclick="takePhoto()" style="display: block; margin-top: 5px;"> Снимай </button>
+<!--
+    <button class="icon-button" style="background-color: #a2af2f; display: block; margin-top: -110px;" >
+        <img src="fav.jpg" class="icon-img">
+        <i>Любими</i>
+    </button>
+
+    <button class="icon-button" style="background-color: #a2af2f; display: block; margin-top: 5px;">
+        <img src="fav.jpg" class="icon-img">
+        <i>История</i>
+    </button>
+-->
+
+    <canvas id="canvas" width="300"></canvas>
+
+    <script>
+        function startCamera() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    document.getElementById("video").srcObject = stream;
+                })
+                .catch(err => {
+                    alert("Няма достъп до камерата!");
+                });
+        }
+
+        function takePhoto() {
+            const video = document.getElementById("video");
+            const canvas = document.getElementById("canvas");
+            const context = canvas.getContext("2d");
+
+            context.drawImage(video, 0, 0, 300, 200);
+        }
+        </script>
+</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            <footer id="footer" >
+                <a href="#" style="background-color: #c0cb5c" class="info fa fa-info-circle"><span>About</span></a>
+
+                <div class="inner" style="background-color: #c0cb5c" >
+                    <div class="copyright">
+                        <ul class="icons">
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        </ul>
+                        &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://www.pinterest.com/">Pinterest</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+		<!-- Scripts -->
+        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/js/skel.min.js' %}"></script>
+        <script src="{% static 'assets/js/util.js' %}"></script>
+        <script src="{% static 'assets/js/main.js' %}"></script>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="{% static 'assets/js/new.js' %}"></script>
+    </body>
+</html>

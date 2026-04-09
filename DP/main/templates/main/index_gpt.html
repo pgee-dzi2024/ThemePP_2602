@@ -1,0 +1,849 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Какво е това? | Разпознаване на растения</title>
+    <meta name="description" content="Дипломно уеб приложение за разпознаване на цветя и растения чрез TensorFlow/Keras модел." />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+
+    <style>
+        :root {
+            --bg: #f4f7f3;
+            --surface: rgba(255, 255, 255, 0.92);
+            --surface-soft: #edf4ee;
+            --text: #17301f;
+            --muted: #5e7366;
+            --primary: #2f7d4a;
+            --primary-2: #1f5a35;
+            --accent: #84c99a;
+            --accent-2: #d7e8d8;
+            --danger: #c94f4f;
+            --border: rgba(23, 48, 31, 0.10);
+            --shadow: 0 18px 50px rgba(18, 35, 23, 0.10);
+            --radius: 24px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(132, 201, 154, 0.24), transparent 30%),
+                radial-gradient(circle at top right, rgba(47, 125, 74, 0.12), transparent 22%),
+                linear-gradient(180deg, #fafcf9 0%, var(--bg) 100%);
+        }
+
+        #page-wrapper {
+            min-height: 100vh;
+        }
+
+        .app-shell {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 28px 20px 48px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            margin-bottom: 22px;
+            background: rgba(255,255,255,0.75);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .brand strong {
+            font-size: 1.05rem;
+            letter-spacing: 0.2px;
+        }
+
+        .brand span {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .nav-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: var(--surface-soft);
+            border: 1px solid rgba(47, 125, 74, 0.14);
+            color: var(--primary-2);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-card {
+            padding: 34px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            inset: auto -70px -70px auto;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: rgba(47, 125, 74, 0.08);
+            filter: blur(8px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            margin-bottom: 16px;
+            border-radius: 999px;
+            background: var(--surface-soft);
+            border: 1px solid rgba(47, 125, 74, 0.14);
+            color: var(--primary-2);
+            font-weight: 700;
+            font-size: 0.92rem;
+        }
+
+        .hero-title {
+            margin: 0 0 14px;
+            font-size: clamp(2.3rem, 4.5vw, 4.4rem);
+            line-height: 1.02;
+            color: var(--text);
+        }
+
+        .hero-subtitle {
+            margin: 0 0 22px;
+            max-width: 64ch;
+            color: var(--muted);
+            font-size: 1.06rem;
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+
+        .btn-primary,
+        .btn-secondary,
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 14px;
+            padding: 14px 18px;
+            font-weight: 700;
+            border: 0;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, opacity 0.18s ease;
+            text-decoration: none;
+            min-height: 48px;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), var(--primary-2));
+            box-shadow: 0 12px 28px rgba(47, 125, 74, 0.24);
+        }
+
+        .btn-secondary {
+            color: var(--text);
+            background: #eef5ef;
+            border: 1px solid var(--border);
+        }
+
+        .btn-ghost {
+            color: var(--muted);
+            background: transparent;
+            border: 1px solid var(--border);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover,
+        .btn-ghost:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:disabled,
+        .btn-secondary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(47, 125, 74, 0.08);
+            border: 1px solid rgba(47, 125, 74, 0.14);
+            color: var(--primary-2);
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        .hero-side {
+            display: grid;
+            gap: 16px;
+        }
+
+        .stat-card {
+            padding: 18px 20px;
+        }
+
+        .stat-label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .stat-value {
+            color: var(--text);
+            font-size: 1.05rem;
+            font-weight: 800;
+            line-height: 1.5;
+        }
+
+        .section-title {
+            margin: 28px 0 14px;
+            font-size: 1.45rem;
+            color: var(--text);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .feature-card {
+            padding: 18px;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.65;
+            font-size: 0.96rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .panel-card {
+            padding: 24px;
+        }
+
+        .panel-title {
+            margin: 0 0 8px;
+            font-size: 1.45rem;
+        }
+
+        .panel-text {
+            margin: 0 0 18px;
+            color: var(--muted);
+            line-height: 1.68;
+        }
+
+        .upload-card {
+            padding: 18px;
+            border-radius: 22px;
+            border: 1.5px dashed rgba(47, 125, 74, 0.28);
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(237,244,238,0.86));
+        }
+
+        .dropzone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            min-height: 320px;
+            padding: 18px;
+            border-radius: 18px;
+            text-align: center;
+            transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+        }
+
+        .dropzone.is-dragover {
+            background: rgba(132, 201, 154, 0.12);
+            transform: scale(1.01);
+            border-color: rgba(47, 125, 74, 0.45);
+        }
+
+        .preview {
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 4 / 3;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #eef4ee;
+        }
+
+        .preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .camera-card {
+            margin-top: 16px;
+            padding: 18px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid var(--border);
+        }
+
+        .camera-header h3 {
+            margin: 0 0 6px;
+            font-size: 1.1rem;
+        }
+
+        .camera-header p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .camera-view {
+            margin-top: 14px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: #eef4ee;
+            min-height: 240px;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+
+        .camera-view video {
+            width: 100%;
+            height: 100%;
+            min-height: 240px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .camera-placeholder {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .helper-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            width: 100%;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .error-box {
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: rgba(201, 79, 79, 0.08);
+            border: 1px solid rgba(201, 79, 79, 0.16);
+            color: var(--danger);
+            font-weight: 600;
+        }
+
+        .loader-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: rgba(47, 125, 74, 0.08);
+            color: var(--primary-2);
+            font-weight: 700;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid rgba(47, 125, 74, 0.18);
+            border-top-color: var(--primary);
+            animation: spin 0.85s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .result-card {
+            padding: 24px;
+        }
+
+        .result-card {
+            padding: 24px;
+        }
+
+        .result-enter-active,
+        .result-leave-active {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .result-enter-from,
+        .result-leave-to {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .result-enter-to,
+        .result-leave-from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .result-main {
+            padding: 22px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(47, 125, 74, 0.10), rgba(132, 201, 154, 0.12));
+            border: 1px solid rgba(47, 125, 74, 0.15);
+            margin-bottom: 18px;
+        }
+
+        .top-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .top-item {
+            padding: 14px 16px;
+            border-radius: 16px;
+            background: #fff;
+            border: 1px solid var(--border);
+        }
+
+        .top-item-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .top-item-name {
+            color: var(--text);
+        }
+
+        .top-item-percent {
+            color: var(--primary-2);
+        }
+
+        .top-progress {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(23, 48, 31, 0.09);
+            overflow: hidden;
+        }
+
+        .top-progress > span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #5aa86c, #93d19f);
+        }
+
+        .empty-state {
+            padding: 26px 18px;
+            border-radius: 18px;
+            background: var(--surface-soft);
+            border: 1px dashed rgba(47, 125, 74, 0.22);
+            color: var(--muted);
+            text-align: center;
+            line-height: 1.65;
+        }
+
+        .footer-card {
+            margin-top: 34px;
+            padding: 18px 22px;
+            background: rgba(255,255,255,0.78);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            color: var(--muted);
+            line-height: 1.65;
+        }
+
+        .result-highlight {
+            border-color: rgba(47, 125, 74, 0.42);
+            box-shadow:
+                0 0 0 1px rgba(47, 125, 74, 0.14),
+                0 0 0 6px rgba(132, 201, 154, 0.18),
+                0 18px 50px rgba(18, 35, 23, 0.12);
+            transition: box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .result-highlight .panel-title {
+            color: var(--primary-2);
+        }
+
+        @media (max-width: 1100px) {
+            .hero,
+            .main-grid,
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .app-shell {
+                padding: 18px 14px 34px;
+            }
+
+            .topbar,
+            .hero-card,
+            .panel-card,
+            .result-card {
+                padding: 18px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-badges {
+                justify-content: flex-start;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary,
+            .btn-ghost {
+                width: 100%;
+            }
+
+            .dropzone {
+                min-height: 240px;
+            }
+
+            .top-item-head,
+            .helper-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="page-wrapper">
+        <div id="app" class="app-shell">
+            <header class="topbar card">
+                <div class="brand">
+                    <strong>Какво е това?</strong>
+                    <span>Дипломно уеб приложение за разпознаване на цветя и растения</span>
+                </div>
+                <div class="nav-badges">
+                    <span class="badge">Django</span>
+                    <span class="badge">TensorFlow</span>
+                    <span class="badge">Keras</span>
+                    <span class="badge">MobileNetV2</span>
+                </div>
+            </header>
+
+            <section class="hero">
+                <div class="hero-card card">
+                    <div class="eyebrow">🌿 AI система за класификация на изображения</div>
+                    <h1 class="hero-title">Какво е това?</h1>
+                    <p class="hero-subtitle">
+                        Уеб приложение, което позволява на потребителя да качи изображение на цвете или растение,
+                        след което модулът с невронна мрежа връща разпознатия клас, увереност и алтернативни резултати.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button type="button" class="btn-primary" @click="scrollToWorkspace">
+                            Качи изображение
+                        </button>
+                        <button type="button" class="btn-secondary" @click="scrollToWorkspace">
+                            Пробвай демонстрацията
+                        </button>
+                        <button type="button" class="btn-ghost" @click="resetForm">
+                            Нова снимка
+                        </button>
+                    </div>
+
+                    <div class="chips">
+                        <span class="chip">Качване и preview</span>
+                        <span class="chip">Top-3 резултати</span>
+                        <span class="chip">Responsive UI</span>
+                        <span class="chip">Дипломна защита</span>
+                    </div>
+                </div>
+
+                <div class="hero-side">
+                    <div class="stat-card card">
+                        <span class="stat-label">Цел</span>
+                        <div class="stat-value">Автоматично разпознаване на растение по снимка</div>
+                    </div>
+                    <div class="stat-card card">
+                        <span class="stat-label">Поток</span>
+                        <div class="stat-value">Избор → Preview → Предсказване → Резултат</div>
+                    </div>
+                    <div class="stat-card card">
+                        <span class="stat-label">Предимство</span>
+                        <div class="stat-value">Чист интерфейс, подходящ за представяне пред комисия</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features">
+                <article class="feature-card card">
+                    <h3>Лесно качване</h3>
+                    <p>Потребителят може да избере файл от устройството и веднага да види визуален preview.</p>
+                </article>
+                <article class="feature-card card">
+                    <h3>Професионален резултат</h3>
+                    <p>Показваме основния клас, процента на увереност и топ-3 класификации с прогрес ленти.</p>
+                </article>
+                <article class="feature-card card">
+                    <h3>Подходящо за мобилни</h3>
+                    <p>Layout-ът се подрежда автоматично според ширината на екрана и остава удобен за използване.</p>
+                </article>
+                <article class="feature-card card">
+                    <h3>Ясни грешки</h3>
+                    <p>Интерфейсът уведомява при липсващ файл, невалиден формат или сървърен проблем.</p>
+                </article>
+            </section>
+
+            <h2 class="section-title">Практическа работа с модела</h2>
+
+            <section id="workspace" class="main-grid">
+                <div class="panel-card card">
+                    <h2 class="panel-title">Качване и preview</h2>
+                    <p class="panel-text">
+                        Изберете изображение от вашето устройство. Преди изпращане може да прегледате файла в реално време.
+                    </p>
+
+                    <div class="upload-card">
+                        <div
+                            class="dropzone"
+                            :class="{ 'is-dragover': isDragOver }"
+                            @dragover.prevent="isDragOver = true"
+                            @dragleave.prevent="isDragOver = false"
+                            @drop.prevent="handleDrop"
+                        >
+                            <input
+                                ref="fileInput"
+                                class="file-input"
+                                type="file"
+                                accept="image/*"
+                                @change="onFileChange"
+                            />
+
+                            <div class="preview">
+                                <img v-if="previewUrl" :src="previewUrl" alt="Preview на избраното изображение" />
+                                <div v-else class="preview-placeholder">
+                                    <div>
+                                        <strong>Няма избрано изображение</strong>
+                                        <div style="margin-top: 8px;">
+                                            Пуснете файл тук или използвайте бутона за избор.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hero-actions" style="width: 100%; margin-bottom: 0;">
+                                <button type="button" class="btn-primary" @click="triggerFilePicker">
+                                    Избери изображение
+                                </button>
+                                <button
+                                    type="button"
+                                    class="btn-secondary"
+                                    @click="uploadImage"
+                                    :disabled="!selectedFile || isUploading"
+                                >
+                                    [[ isUploading ? 'Обработка...' : 'Разпознай изображението' ]]
+                                </button>
+                            </div>
+
+                            <div class="helper-row">
+                                <span>Поддържани формати: JPG, PNG, WEBP</span>
+                                <span v-if="selectedFile">Файл: [[ selectedFile.name ]]</span>
+                            </div>
+                        </div>
+
+                        <div class="camera-card">
+                            <div class="camera-header">
+                                <h3>Камера</h3>
+                                <p>Снимайте директно от устройството и използвайте кадъра за разпознаване.</p>
+                            </div>
+
+                            <div class="camera-view">
+                                <video
+                                    ref="video"
+                                    id="video"
+                                    autoplay
+                                    playsinline
+                                    muted
+                                    v-show="isCameraOn"
+                                ></video>
+
+                                <div v-if="!isCameraOn" class="camera-placeholder">
+                                    Камерата е изключена. Натиснете „Отвори камера“, за да започнете.
+                                </div>
+
+                                <canvas ref="canvas" id="canvas" width="640" height="480" style="display: none;"></canvas>
+                            </div>
+
+                            <div class="hero-actions" style="width: 100%; margin-bottom: 0; margin-top: 14px;">
+                                <button type="button" class="btn-primary" @click="startCamera" :disabled="isCameraOn || isUploading">
+                                    Отвори камера
+                                </button>
+                                <button type="button" class="btn-secondary" @click="takePhoto" :disabled="!isCameraOn || isUploading">
+                                    Снимай
+                                </button>
+                                <button type="button" class="btn-ghost" @click="stopCamera" :disabled="!isCameraOn">
+                                    Спри камерата
+                                </button>
+                            </div>
+
+                            <div class="helper-row">
+                                <span v-if="cameraError" class="camera-error">[[ cameraError ]]</span>
+                                <span v-else>Камерата работи локално чрез браузърния достъп до media devices.</span>
+                            </div>
+                        </div>
+
+                        <div v-if="errorMessage" class="error-box">
+                            [[ errorMessage ]]
+                        </div>
+
+                        <div v-if="isUploading" class="loader-wrap">
+                            <span class="spinner"></span>
+                            <span>Моделът анализира изображението...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result-panel" class="panel-card card" :class="{ 'result-highlight': resultHighlighted }">
+                    <h2 class="panel-title">Резултат от модела</h2>
+                    <p class="panel-text">
+                        Тук се визуализира най-вероятният клас, процентът на увереност и топ-3 най-добри предсказания.
+                    </p>
+
+                    <transition name="result">
+                        <div v-if="predictionResult" class="result-card card">
+                            <div class="result-main">
+                                <div class="result-name">[[ predictionResult.predicted_class_bg ]]</div>
+                                <p class="result-confidence">
+                                    English: [[ predictionResult.predicted_class_en ]] · Увереност: [[ predictionResult.confidence ]]%
+                                </p>
+                                <div class="confidence-bar" aria-label="Увереност">
+                                    <span :style="{ width: predictionResult.confidence + '%' }"></span>
+                                </div>
+                            </div>
+
+                            <h3 style="margin: 0 0 10px;">Top-3 резултати</h3>
+                            <div class="top-list">
+                                <div v-for="(item, index) in topPredictions" :key="item.class_name_en" class="top-item">
+                                    <div class="top-item-head">
+                                        <span class="top-item-name">[[ index + 1 ]]. [[ item.class_name_bg ]]</span>
+                                        <span class="top-item-percent">[[ item.confidence ]]%</span>
+                                    </div>
+                                    <div class="top-progress">
+                                        <span :style="{ width: item.confidence + '%' }"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+
+                    <div v-if="!predictionResult && !isUploading" class="empty-state">
+                        Когато качите изображение и натиснете „Разпознай изображението“, резултатът ще се появи тук.
+                    </div>
+                </div>
+            </section>
+
+            <div class="footer-card">
+                <strong>„Какво е това?“</strong> е дипломно уеб приложение за класификация на изображения,
+                реализирано с Django, TensorFlow/Keras и модел MobileNetV2.
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/skel.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{% static 'assets/js/new.js' %}"></script>
+</body>
+</html>

@@ -26,7 +26,6 @@ CLASS_NAMES_BG = {
 MODEL = None
 CLASS_NAMES_EN = None
 
-
 def load_resources():
     global MODEL, CLASS_NAMES_EN
 

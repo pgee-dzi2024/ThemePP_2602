@@ -1,270 +1,285 @@
 {% load static %}
-<!DOCTYPE HTML>
-<!--
-	Radius by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-	<head>
-		<title>Radius by TEMPLATED</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
-    </head>
-
-    <body>
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Какво е това? | Разпознаване на растения</title>
+    <meta name="description" content="Дипломно уеб приложение за разпознаване на цветя и растения чрез TensorFlow/Keras модел." />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/gpt.css' %}" />
+</head>
+<body>
+    <div id="page-wrapper">
         <div id="app">
             <!-- Header -->
-                <header id="header">
-                    <div class="inner" style="background-color: #ed96be">
-                        <div class="content">
-                            <h1>Какво е това?</h1>
-                            <h2> <i> Приложение за разпознаване на растения </i> <br /> </h2>
-                            <a class="button big alt" @click="showMode = 1"><span><i>Започни</i></span></a>
-                        </div>
-                        <a  class="button hidden" @click="showMode = 0"><span>Let's Go</span></a>
+            <header id="header" style="background-image: url('{% static "images/BG-1.png" %}');">
+            <div class="inner">
+                    <div class="content">
+                        <h1>Какво е това?</h1>
+                        <h2> <i> Приложение за разпознаване на растения </i> <br /> </h2>
+                        <a class="button big alt" @click="showMode = 1"><span><i>Започни</i></span></a>
+                    </div>
+                    <a  class="button hidden" @click="showMode = 0"><span>Let's Go</span></a>
+                </div>
+            </header>
+            <!-- Splash -->
+            <div v-if="showMode === 0">
+                <div class="inner" >
+                    <div class="columns"></div>
+                </div>
+            </div>
+            <!-- Main -->
+            <div class="app-shell"  v-if="showMode === 1">
+                <header class="topbar card">
+                    <div class="brand">
+                        <strong>Какво е това?</strong>
+                        <span>Уеб приложение за разпознаване на цветя</span>
+                    </div>
+                    <div class="nav-badges">
+                        <span class="badge">Django</span>
+                        <span class="badge">TensorFlow</span>
+                        <span class="badge">Keras</span>
+                        <span class="badge">MobileNetV2</span>
                     </div>
                 </header>
+                <section class="hero">
+                    <div class="hero-card card" style="align-content: center; text-align: center;">
+                    <div class="eyebrow">🌿 AI система за класификация на изображения</div>
+                        <h1 class="hero-title" >Какво е това?</h1>
+                        <p class="hero-subtitle">
+                            Уеб приложение, което позволява на потребителя да качи изображение на цвете или растение,
+                            след което модулът с невронна мрежа връща разпознатия клас, увереност и алтернативни резултати.
+                        </p>
 
-            <!-- Main -->
-                <div v-if="showMode == 0">
-                    <div class="inner">
-                        <div class="columns">
-
-                            <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f1.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f2.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f3.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f4.jpg' %}" alt=""/></a>
-                            </div>
-
-                            <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
-                                <div class="image fit">
-                                    <a href="detail1.html"><img src="{% static 'images/f6.jpg' %}" alt=""/></a>
-                                </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f5.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/poppy8.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f7.jpg' %}" alt=""/></a>
-                            </div>
-
-                            <!-- Column 3 (horizontal, vertical, horizontal, vertical) -->
-                                <div class="image fit">
-                                    <a href="detail1.html"><img src="{% static 'images/f9.jpg' %}" alt=""/></a>
-                                </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f12.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f11.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f10.jpg' %}" alt=""/></a>
-                            </div>
-
-                            <!-- Column 4 (vertical, horizontal, vertical, horizontal) -->
-                                <div class="image fit">
-                                    <a href="detail1.html"><img src="{% static 'images/f13.jpg' %}" alt=""/></a>
-                                </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f14.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f15.jpg' %}" alt=""/></a>
-                            </div>
-                            <div class="image fit">
-                                <a href="detail1.html"><img src="{% static 'images/f16.jpg' %}" alt=""/></a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div v-if="showMode == 1">
-                    <div class="inner">
-                        <div class="image fit">
-                            <img src="images/f5.jpg" alt="" />
-                        </div>
-                        <div class="content">
-
-
-                        <div>
-                            <div class="inner">
-                                <div class="columns">
-
-                        <!-- Column 1 (horizontal, vertical, horizontal, vertical) -->
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f1.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f2.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f3.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f4.jpg' %}" alt=""/></a>
-                                    </div>
-
-                                    <!-- Column 2 (vertical, horizontal, vertical, horizontal) -->
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f6.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f5.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/poppy8.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f7.jpg' %}" alt=""/></a>
-                                    </div>
-
-                                    <!-- Column 3 (horizontal, vertical, horizontal, vertical) -->
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f9.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f12.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f11.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f10.jpg' %}" alt=""/></a>
-                                    </div>
-
-                                    <!-- Column 4 (vertical, horizontal, vertical, horizontal) -->
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f13.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f14.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f15.jpg' %}" alt=""/></a>
-                                    </div>
-                                    <div class="image fit">
-                                        <a href="detail1.html"><img src="{% static 'images/f16.jpg' %}" alt=""/></a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div v-if="showMode == 1">
-                        <div class="inner">
-                            <div class="image fit">
-                                <img src="images/f5.jpg" alt="" />
-                            </div>
-                            <div class="content">
-
-                            </div>
+                        <div class="hero-actions" style="text-align: center;">
+                        <button type="button" class="btn-primary" @click="scrollToWorkspace">
+                                Качи изображение
+                            </button>
+                            <button type="button" class="btn-secondary" @click="scrollToWorkspace">
+                                Пробвай демонстрацията
+                            </button>
+                            <button type="button" class="btn-ghost" @click="scrollToCamera">
+                                Нова снимка
+                            </button>
                         </div>
 
-                        <a href="detail1.html" class="nav previous"><span class="fa fa-chevron-left"></span></a>
-                        <a href="detail2.html" class="nav next"><span class="fa fa-chevron-right"></span></a>
+                        <div class="chips">
+                            <span class="chip">Качване и preview</span>
+                            <span class="chip">Top-3 резултати</span>
+                            <span class="chip">Responsive UI</span>
+                        </div>
+
                     </div>
 
+                    <div class="hero-side">
+                        <div class="stat-card card">
+                            <span class="stat-label">Цел</span>
+                            <div class="stat-value">Автоматично разпознаване на растение по снимка</div>
                         </div>
-                </div>
-            <!-- Footer -->
-                <footer id="footer" >
-                    <a href="#" style="background-color: #c0cb5c" class="info fa fa-info-circle"><span>About</span></a>
+                        <div class="stat-card card">
+                            <span class="stat-label">Поток</span>
+                            <div class="stat-value">Избор → Preview → Предсказване → Резултат</div>
+                        </div>
+                        <div class="stat-card card">
+                            <span class="stat-label">Предимство</span>
+                            <div class="stat-value">Чист интерфейс</div>
+                        </div>
+                    </div>
+                </section>
+                <section class="features">
+                    <article class="feature-card card">
+                        <h3>Лесно качване</h3>
+                        <p>Потребителят може да избере файл от устройството и веднага да види визуален preview.</p>
+                    </article>
+                    <article class="feature-card card">
+                        <h3>Професионален резултат</h3>
+                        <p>Показваме основния клас, процента на увереност и топ-3 класификации с прогрес ленти.</p>
+                    </article>
+                    <article class="feature-card card">
+                        <h3>Подходящо за мобилни</h3>
+                        <p>Layout-ът се подрежда автоматично според ширината на екрана и остава удобен за използване.</p>
+                    </article>
+                    <article class="feature-card card">
+                        <h3>Ясни грешки</h3>
+                        <p>Интерфейсът уведомява при липсващ файл, невалиден формат или сървърен проблем.</p>
+                    </article>
+                </section>
+                <h2 class="section-title">Практическа работа с модела</h2>
+                <section id="workspace" class="main-grid">
+                    <div class="panel-card card">
+                        <h2 class="panel-title">Качване и preview</h2>
+                        <p class="panel-text">
+                            Изберете изображение от вашето устройство. Преди изпращане може да прегледате файла в реално време.
+                        </p>
 
-                    <div class="inner" style="background-color: #c0cb5c" >
-                        <div class="content" style="margin-top: 0; padding-top: 0;">
-                            <h3 style="margin-top: 0; margin-bottom: 10px;" > Меню </h3>
-                                <div style="margin-top: 15px;">
-                                    <input type="file" accept="image/*" @change="onFileChange">
-                                    <button @click="uploadImage" style="display: block; margin-top: 8px;" :disabled="isUploading">
-                                        [[ isUploading ? 'Обработка...' : 'Качи и разпознай' ]]
+                        <div class="upload-card">
+                            <div
+                                class="dropzone"
+                                :class="{ 'is-dragover': isDragOver }"
+                                @dragover.prevent="isDragOver = true"
+                                @dragleave.prevent="isDragOver = false"
+                                @drop.prevent="handleDrop"
+                            >
+                                <input
+                                    ref="fileInput"
+                                    class="file-input"
+                                    type="file"
+                                    accept="image/*"
+                                    @change="onFileChange"
+                                />
+
+                                <div class="preview">
+                                    <img v-if="previewUrl" :src="previewUrl" alt="Preview на избраното изображение" />
+                                    <div v-else class="preview-placeholder">
+                                        <div>
+                                            <strong>Няма избрано изображение</strong>
+                                            <div style="margin-top: 8px;">
+                                                Пуснете файл тук или използвайте бутона за избор.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="hero-actions" style="width: 100%; margin-bottom: 0;">
+                                    <button type="button" class="btn-primary" @click="triggerFilePicker">
+                                        Избери изображение
                                     </button>
+                                    <button
+                                        type="button"
+                                        class="btn-secondary"
+                                        @click="uploadImage"
+                                        :disabled="!selectedFile || isUploading"
+                                    >
+                                        [[ isUploading ? 'Обработка...' : 'Разпознай изображението' ]]
+                                    </button>
+                                </div>
 
-                                    <p v-if="errorMessage" style="margin-top: 10px; color: #8b0000;">
-                                        [[ errorMessage ]]
+                                <div class="helper-row">
+                                    <span>Поддържани формати: JPG, PNG, WEBP</span>
+                                    <span v-if="selectedFile">Файл: [[ selectedFile.name ]]</span>
+                                </div>
+                            </div>
+
+                            <div id="camera-card" class="camera-card">
+                                <div class="camera-header">
+                                    <h3>Камера</h3>
+                                    <p>Снимайте директно от устройството и използвайте кадъра за разпознаване.</p>
+                                </div>
+
+                                <div class="camera-view">
+                                    <video
+                                        ref="video"
+                                        id="video"
+                                        autoplay
+                                        playsinline
+                                        muted
+                                        v-show="isCameraOn"
+                                    ></video>
+
+                                    <div v-if="!isCameraOn" class="camera-placeholder">
+                                        Камерата е изключена. Натиснете „Отвори камера“, за да започнете.
+                                    </div>
+
+                                    <canvas ref="canvas" id="canvas" width="640" height="480" style="display: none;"></canvas>
+                                </div>
+
+                                <div class="hero-actions" style="width: 100%; margin-bottom: 0; margin-top: 14px;">
+                                    <button type="button" class="btn-primary" @click="startCamera" :disabled="isCameraOn || isUploading">
+                                        Отвори камера
+                                    </button>
+                                    <button type="button" class="btn-secondary" @click="takePhoto" :disabled="!isCameraOn || isUploading">
+                                        Снимай
+                                    </button>
+                                    <button type="button" class="btn-ghost" @click="stopCamera" :disabled="!isCameraOn">
+                                        Спри камерата
+                                    </button>
+                                </div>
+
+                                <div class="helper-row">
+                                    <span v-if="cameraError" class="camera-error">[[ cameraError ]]</span>
+                                    <span v-else>Камерата работи локално чрез браузърния достъп до media devices.</span>
+                                </div>
+                            </div>
+
+                            <div v-if="errorMessage" class="error-box">
+                                [[ errorMessage ]]
+                            </div>
+
+                            <div v-if="isUploading" class="loader-wrap">
+                                <span class="spinner"></span>
+                                <span>Моделът анализира изображението...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="result-panel" class="panel-card card" :class="{ 'result-highlight': resultHighlighted }">
+                        <h2 class="panel-title">Резултат от модела</h2>
+                        <p class="panel-text">
+                            Тук се визуализира най-вероятният клас, процентът на увереност и топ-3 най-добри предсказания.
+                        </p>
+
+                        <transition name="result">
+                            <div v-if="predictionResult" class="result-card card">
+                                <div class="result-main">
+                                    <div class="result-name">[[ predictionResult.predicted_class_bg ]]</div>
+                                    <p class="result-confidence">
+                                        English: [[ predictionResult.predicted_class_en ]] · Увереност: [[ predictionResult.confidence ]]%
                                     </p>
-
-                                    <div v-if="predictionResult" style="margin-top: 12px;">
-                                        <p><strong>Разпознато:</strong> [[ predictionResult.predicted_class_bg ]]</p>
-                                        <p><strong>English:</strong> [[ predictionResult.predicted_class_en ]]</p>
-                                        <p><strong>Достоверност:</strong> [[ predictionResult.confidence ]]%</p>
+                                    <div class="confidence-bar" aria-label="Увереност">
+                                        <span :style="{ width: predictionResult.confidence + '%' }"></span>
                                     </div>
                                 </div>
 
-                                <button onclick="startCamera()" style="margin-top: -10px;">Отвори камера</button>
-                                <button onclick="takePhoto()" style="display: block; margin-top: 5px;"> Снимай </button>
+                                <h3 style="margin: 0 0 10px;">Top-3 резултати</h3>
+                                <div class="top-list">
+                                    <div v-for="(item, index) in topPredictions" :key="item.class_name_en" class="top-item">
+                                        <div class="top-item-head">
+                                            <span class="top-item-name">[[ index + 1 ]]. [[ item.class_name_bg ]]</span>
+                                            <span class="top-item-percent">[[ item.confidence ]]%</span>
+                                        </div>
+                                        <div class="top-progress">
+                                            <span :style="{ width: item.confidence + '%' }"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
 
-                                <video id="video" width="300" autoplay></video>
-<!--
-                                <button class="icon-button" style="background-color: #a2af2f; display: block; margin-top: -110px;" >
-                                    <img src="fav.jpg" class="icon-img">
-                                    <i>Любими</i>
-                                </button>
-
-                                <button class="icon-button" style="background-color: #a2af2f; display: block; margin-top: 5px;">
-                                    <img src="fav.jpg" class="icon-img">
-                                    <i>История</i>
-                                </button>
--->
-
-                                <canvas id="canvas" width="300"></canvas>
-
-                                <script>
-                                function startCamera() {
-                                    navigator.mediaDevices.getUserMedia({ video: true })
-                                        .then(stream => {
-                                            document.getElementById("video").srcObject = stream;
-                                        })
-                                        .catch(err => {
-                                            alert("Няма достъп до камерата!");
-                                        });
-                                }
-
-                                function takePhoto() {
-                                    const video = document.getElementById("video");
-                                    const canvas = document.getElementById("canvas");
-                                    const context = canvas.getContext("2d");
-
-                                    context.drawImage(video, 0, 0, 300, 200);
-                                }
-                                </script>
-                        </div>
-                        <div class="copyright">
-
-                            <br> <br> <br> <br>
-
-                            <ul class="icons">
-                                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                            </ul>
-                            &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a href="https://www.pinterest.com/">Pinterest</a>
+                        <div v-if="!predictionResult && !isUploading" class="empty-state">
+                            Когато качите изображение и натиснете „Разпознай изображението“, резултатът ще се появи тук.
                         </div>
                     </div>
-                </footer>
+                </section>
+
+            </div>
+            <footer id="footer" >
+                <a href="#" style="background-color: #c0cb5c" class="info fa fa-info-circle"><span>About</span></a>
+
+                <div class="inner" style="background-color: #c0cb5c" >
+                    <div class="footer-card">
+                    <strong>„Какво е това?“</strong> <br>е уеб приложение за класификация на изображения,
+                    реализирано с Django, TensorFlow/Keras и модел MobileNetV2 и разработено в рамките на дипломния проект на Ива Борисова Колчагова.
+                </div>
+                    <div class="copyright">
+                        <ul class="icons">
+                            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+                            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+                        </ul>
+                        Дипломен проект:&nbsp;<a href="">Ива Борисова Колчагова</a>&copy;Банско, 2026
+                    </div>
+                </div>
+            </footer>
         </div>
-		<!-- Scripts -->
-        <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-        <script src="{% static 'assets/js/skel.min.js' %}"></script>
-        <script src="{% static 'assets/js/util.js' %}"></script>
-        <script src="{% static 'assets/js/main.js' %}"></script>
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="{% static 'assets/js/new.js' %}"></script>
+    </div>
 
-
-    </body>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/skel.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{% static 'assets/js/new.js' %}"></script>
+</body>
 </html>
