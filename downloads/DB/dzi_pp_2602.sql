@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Време на генериране: 17 фев 2026 в 11:54
+-- Време на генериране: 14 апр 2026 в 15:56
 -- Версия на сървъра: 10.4.32-MariaDB
 -- Версия на PHP: 8.2.12
 
@@ -116,7 +116,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$600000$YvuhdYpJyUvMdzRdkW1TXo$6Tabgl39gUZKBZ4chG8dJTgMocYafb0+DCdqxQtrK/s=', '2026-02-17 10:13:06.750788', 1, 'user_26', '', '', '', 1, 1, '2026-02-08 18:24:11.558339');
+(1, 'pbkdf2_sha256$600000$YvuhdYpJyUvMdzRdkW1TXo$6Tabgl39gUZKBZ4chG8dJTgMocYafb0+DCdqxQtrK/s=', '2026-04-05 19:27:53.828340', 1, 'user_26', '', '', '', 1, 1, '2026-02-08 18:24:11.558339');
 
 -- --------------------------------------------------------
 
@@ -165,7 +165,9 @@ CREATE TABLE `django_admin_log` (
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
 (1, '2026-02-17 10:18:21.223634', '1', 'Роза', 1, '[{\"added\": {}}]', 7, 1),
-(2, '2026-02-17 10:52:05.907384', '2', 'Лале', 1, '[{\"added\": {}}]', 7, 1);
+(2, '2026-02-17 10:52:05.907384', '2', 'Лале', 1, '[{\"added\": {}}]', 7, 1),
+(3, '2026-02-17 19:48:01.341747', '2', 'Лале', 2, '[{\"changed\": {\"fields\": [\"\\u0421\\u043d\\u0438\\u043c\\u043a\\u0430\"]}}]', 7, 1),
+(4, '2026-02-17 19:50:57.090203', '3', 'Хризантема', 1, '[{\"added\": {}}]', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -228,7 +230,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (16, 'auth', '0011_update_proxy_permissions', '2026-02-05 23:01:56.750599'),
 (17, 'auth', '0012_alter_user_first_name_max_length', '2026-02-05 23:01:56.763136'),
 (18, 'sessions', '0001_initial', '2026-02-05 23:01:56.791698'),
-(19, 'main', '0001_initial', '2026-02-17 10:11:15.852972');
+(19, 'main', '0001_initial', '2026-02-17 10:11:15.852972'),
+(20, 'main', '0002_alter_picture_authenticity_alter_picture_date_and_more', '2026-04-05 19:29:12.987578'),
+(21, 'main', '0003_picture_is_favorite_alter_picture_description', '2026-04-06 21:02:56.239551');
 
 -- --------------------------------------------------------
 
@@ -248,6 +252,8 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('1c63lkut4a145xqtdwnppfw6h4xmkc9t', '.eJxVjMEOwiAQRP-FsyEUKFCP3v0GsuyuUjWQlPZk_Hdp0oOeZjJvZt4iwrbmuDVe4kziLAZx-s0S4JPLDugB5V4l1rIuc5J7RR60yWslfl2O7t9Bhpb72jnjR_AmIFsPriv5AJaMRT115wcVwNyAGVFbpQl1ClMwQdEIoK34fAHTszen:1vsI4o:IcZtEatAYyHcbJDjRenhXaii2Tej5b4p-KfdFZQ6uKQ', '2026-03-03 10:13:06.754761'),
+('9y4lj47f1ts6no49ereuam6raej6g83t', '.eJxVjMEOwiAQRP-FsyEUKFCP3v0GsuyuUjWQlPZk_Hdp0oOeZjJvZt4iwrbmuDVe4kziLAZx-s0S4JPLDugB5V4l1rIuc5J7RR60yWslfl2O7t9Bhpb72jnjR_AmIFsPriv5AJaMRT115wcVwNyAGVFbpQl1ClMwQdEIoK34fAHTszen:1w9T8T:a8gRMBohf8QfpA5bu1BRSxtTdLSjuc0MZCiTKejGw3Q', '2026-04-19 19:27:53.830344'),
+('ggxkjov2ildsdxiodfamji4zrbhkgrfk', '.eJxVjMEOwiAQRP-FsyEUKFCP3v0GsuyuUjWQlPZk_Hdp0oOeZjJvZt4iwrbmuDVe4kziLAZx-s0S4JPLDugB5V4l1rIuc5J7RR60yWslfl2O7t9Bhpb72jnjR_AmIFsPriv5AJaMRT115wcVwNyAGVFbpQl1ClMwQdEIoK34fAHTszen:1vsR2S:Mn3xTgHuurekLSn4IYYxOpJiK2iqgThLBJKIjwg6mbc', '2026-03-03 19:47:16.995626'),
 ('kv1eqj60ofqpv5obcx6dyv2nvas0729e', '.eJxVjMEOwiAQRP-FsyEUKFCP3v0GsuyuUjWQlPZk_Hdp0oOeZjJvZt4iwrbmuDVe4kziLAZx-s0S4JPLDugB5V4l1rIuc5J7RR60yWslfl2O7t9Bhpb72jnjR_AmIFsPriv5AJaMRT115wcVwNyAGVFbpQl1ClMwQdEIoK34fAHTszen:1vp9Sq:TomLx950znhgul49drYFATRuk7Px2oVkR-GAh09a6wQ', '2026-02-22 18:24:56.896326'),
 ('n9afmguwnhfg2mva7b8iv03tf5vrxtzd', '.eJxVjMEOwiAQRP-FsyEUKFCP3v0GsuyuUjWQlPZk_Hdp0oOeZjJvZt4iwrbmuDVe4kziLAZx-s0S4JPLDugB5V4l1rIuc5J7RR60yWslfl2O7t9Bhpb72jnjR_AmIFsPriv5AJaMRT115wcVwNyAGVFbpQl1ClMwQdEIoK34fAHTszen:1vpLvL:XY_mDWvnPJufa0FBKF-FBQVN5YRsaDaG2zcyDvxKphA', '2026-02-23 07:43:11.462833');
 
@@ -263,16 +269,25 @@ CREATE TABLE `main_picture` (
   `description` longtext NOT NULL,
   `picture` varchar(100) NOT NULL,
   `date` datetime(6) NOT NULL,
-  `authenticity` int(11) NOT NULL
+  `authenticity` int(11) NOT NULL,
+  `is_favorite` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Схема на данните от таблица `main_picture`
 --
 
-INSERT INTO `main_picture` (`id`, `name`, `description`, `picture`, `date`, `authenticity`) VALUES
-(1, 'Роза', 'Много красиво цввете', 'images/Роза.jpg', '2026-02-17 10:18:21.222634', 90),
-(2, 'Лале', 'Друго красиво цвете', 'images/Лале.jpg', '2026-02-17 10:52:05.905385', 80);
+INSERT INTO `main_picture` (`id`, `name`, `description`, `picture`, `date`, `authenticity`, `is_favorite`) VALUES
+(1, 'Роза', 'Много красиво цввете', 'images/Роза.jpg', '2026-02-17 10:18:21.222634', 90, 1),
+(2, 'Лале', 'Друго красиво цвете', 'images/лале.jpeg', '2026-02-17 10:52:05.905385', 80, 1),
+(3, 'Хризантема', 'Хризантемите са многогодишни растения от семейство сложноцветни, произхождащи от Азия и Североизточна Азия. Те са особено популярни като есенни цветя – цъфтят от края на август до началото на октомври, издържат на по-ниски температури и се предлагат в десетки багри. Саксийната хризантема достига височина 50–60 см. и има кичести цветове, събрани в кошничка. През лятото и есента те оживяват градини и балкони, като са символ на красота и устойчивост в по-хладното време.', 'images/хризантема.jpg', '2026-02-17 19:50:57.089196', 76, 1),
+(4, 'daisy', 'Разпознато като daisy', 'images/f3_NA1hvSd.jpg', '2026-04-06 21:06:05.327938', 93, 0),
+(5, 'jellyfish', 'Разпознато като jellyfish', 'images/f7.jpg', '2026-04-06 21:06:51.248290', 4, 0),
+(6, 'jellyfish', 'Разпознато като jellyfish', 'images/f7_QF9LZaK.jpg', '2026-04-06 21:10:41.775399', 4, 0),
+(7, 'daisy', 'Разпознато като daisy', 'images/f11.jpg', '2026-04-06 21:10:56.011968', 50, 0),
+(8, 'velvet', 'Разпознато като velvet', 'images/f12.jpg', '2026-04-06 21:21:17.014938', 94, 0),
+(9, 'velvet', 'Разпознато като velvet', 'images/f12_CmRmMTs.jpg', '2026-04-06 21:21:34.809182', 94, 0),
+(10, 'velvet', 'Разпознато като velvet', 'images/Роза_7AGnh18.jpg', '2026-04-06 21:22:05.947359', 22, 0);
 
 --
 -- Indexes for dumped tables
@@ -401,7 +416,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -413,13 +428,13 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `main_picture`
 --
 ALTER TABLE `main_picture`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ограничения за дъмпнати таблици
