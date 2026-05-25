@@ -125,6 +125,6 @@ history2 = model.fit(
 )
 
 # Запазване на финалния вариант
-model.save("flower_model_opt.keras")
+model.save("flower_model_opt_2.keras")
 print("✅ По-стабилният модел е запазен като flower_model_opt.keras")
 print("✅ По-точен модел е запазен!")
